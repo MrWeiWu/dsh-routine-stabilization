@@ -1,0 +1,745 @@
+{
+  "schemaVersion": 1,
+  "set": "dev",
+  "provenance": "synthetic",
+  "frozenAt": "2026-11-04T00:00:00Z",
+  "cases": [
+    {
+      "id": "anchor-neg-khz",
+      "description": "Anchor 1: -3.25 kHz detuning normalizes to -3250 Hz and keeps its field id.",
+      "input": {
+        "value": -3.25,
+        "unit": "kHz",
+        "fieldId": "detuning_khz",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "candidates": [
+          {
+            "fieldId": "detuning_khz",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_khz",
+          "unit": "Hz",
+          "valueHz": -3250,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "anchor-rad-s",
+      "description": "Anchor 2: +2*pi*150 rad/s is +150 Hz (angular frequency converted with 1/(2*pi)).",
+      "input": {
+        "value": 942.4777960769379,
+        "unit": "rad/s",
+        "fieldId": "detuning_rad",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_rad",
+          "unit": "Hz",
+          "valueHz": 150,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "anchor-dual-khz-explicit",
+      "description": "Anchor 3a: drive and detuning columns are both kHz; accept only the explicitly identified detuning field.",
+      "input": {
+        "value": 0.8,
+        "unit": "kHz",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "candidates": [
+          {
+            "fieldId": "drive_freq",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "detuning_freq",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 800,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "anchor-dual-khz-no-id",
+      "description": "Anchor 3b: same dual kHz columns but no explicit field id, so the binding is ambiguous.",
+      "input": {
+        "value": 0.8,
+        "unit": "kHz",
+        "fieldId": "",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "candidates": [
+          {
+            "fieldId": "drive_freq",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "detuning_freq",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "anchor-metadata-conflict",
+      "description": "Anchor 4: header declares Hz while schema declares rad/s; no numeric answer is admissible.",
+      "input": {
+        "value": 1.5,
+        "unit": "Hz",
+        "fieldId": "detuning_hz",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "metadata-conflict",
+        "checks": null
+      }
+    },
+    {
+      "id": "dev-hz-positive",
+      "description": "Plain positive Hz detuning passes through unchanged.",
+      "input": {
+        "value": 325,
+        "unit": "Hz",
+        "fieldId": "detuning_hz",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_hz",
+          "unit": "Hz",
+          "valueHz": 325,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "dev-hz-negative",
+      "description": "Negative Hz detuning keeps its sign.",
+      "input": {
+        "value": -120,
+        "unit": "Hz",
+        "fieldId": "detuning_hz",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_hz",
+          "unit": "Hz",
+          "valueHz": -120,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "dev-hz-zero",
+      "description": "Zero detuning is finite and accepted with valueHz 0.",
+      "input": {
+        "value": 0,
+        "unit": "Hz",
+        "fieldId": "detuning_hz",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_hz",
+          "unit": "Hz",
+          "valueHz": 0,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "dev-khz-positive",
+      "description": "Positive kHz detuning scales by 1000.",
+      "input": {
+        "value": 1.25,
+        "unit": "kHz",
+        "fieldId": "detuning_khz",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_khz",
+          "unit": "Hz",
+          "valueHz": 1250,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "dev-khz-negative-fraction",
+      "description": "Fractional negative kHz detuning scales by 1000 and keeps its sign.",
+      "input": {
+        "value": -0.0005,
+        "unit": "kHz",
+        "fieldId": "detuning_khz",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_khz",
+          "unit": "Hz",
+          "valueHz": -0.5,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "dev-rad-s-positive",
+      "description": "Positive angular frequency converts with 1/(2*pi).",
+      "input": {
+        "value": 376.99111843077515,
+        "unit": "rad/s",
+        "fieldId": "detuning_rad",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_rad",
+          "unit": "Hz",
+          "valueHz": 60,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "dev-rad-s-negative",
+      "description": "Negative angular frequency converts with 1/(2*pi) and keeps its sign.",
+      "input": {
+        "value": -565.4866776461628,
+        "unit": "rad/s",
+        "fieldId": "detuning_rad",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_rad",
+          "unit": "Hz",
+          "valueHz": -90,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "dev-rad-s-one-cycle",
+      "description": "One angular cycle per second converts to 1 Hz.",
+      "input": {
+        "value": 6.283185307179586,
+        "unit": "rad/s",
+        "fieldId": "detuning_rad",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_rad",
+          "unit": "Hz",
+          "valueHz": 1,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "dev-header-only-khz",
+      "description": "Only a header declaration is present; equivalent metadata is still sufficient.",
+      "input": {
+        "value": 0.25,
+        "unit": "kHz",
+        "fieldId": "detuning_khz",
+        "declaredUnit": {
+          "header": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_khz",
+          "unit": "Hz",
+          "valueHz": 250,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "dev-schema-only-rad-s",
+      "description": "Only a schema declaration is present; equivalent metadata is still sufficient.",
+      "input": {
+        "value": 251.32741228718345,
+        "unit": "rad/s",
+        "fieldId": "detuning_rad",
+        "declaredUnit": {
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_rad",
+          "unit": "Hz",
+          "valueHz": 40,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "dev-multi-detuning-explicit",
+      "description": "Two detuning candidates are plausible but the explicit field id selects one unambiguously.",
+      "input": {
+        "value": 0.5,
+        "unit": "kHz",
+        "fieldId": "detuning_b",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "candidates": [
+          {
+            "fieldId": "detuning_a",
+            "unit": "kHz",
+            "role": "detuning"
+          },
+          {
+            "fieldId": "detuning_b",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_b",
+          "unit": "Hz",
+          "valueHz": 500,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "dev-single-detuning-candidate",
+      "description": "A single detuning candidate confirms an explicit field id.",
+      "input": {
+        "value": 12,
+        "unit": "Hz",
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "candidates": [
+          {
+            "fieldId": "probe_detuning",
+            "unit": "Hz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": 12,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "dev-declared-unit-whitespace",
+      "description": "Header/schema comparison is whitespace tolerant.",
+      "input": {
+        "value": 0.25,
+        "unit": "kHz",
+        "fieldId": "detuning_khz",
+        "declaredUnit": {
+          "header": " kHz ",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_khz",
+          "unit": "Hz",
+          "valueHz": 250,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "dev-unsupported-unit",
+      "description": "MHz is outside the supported unit enum.",
+      "input": {
+        "value": 5,
+        "unit": "MHz",
+        "fieldId": "detuning_mhz",
+        "declaredUnit": {
+          "header": "MHz",
+          "schema": "MHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "unsupported-unit",
+        "checks": null
+      }
+    },
+    {
+      "id": "dev-missing-unit",
+      "description": "The unit is absent, so required metadata is incomplete.",
+      "input": {
+        "value": 5,
+        "fieldId": "detuning_hz",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "dev-unverified-source",
+      "description": "An unverified metadata source is not safe for automatic admission.",
+      "input": {
+        "value": 5,
+        "unit": "Hz",
+        "fieldId": "detuning_hz",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "unverified"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "dev-missing-declared-unit",
+      "description": "No declaredUnit metadata is available.",
+      "input": {
+        "value": 5,
+        "unit": "Hz",
+        "fieldId": "detuning_hz",
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "dev-empty-declared-unit",
+      "description": "declaredUnit is present but carries neither header nor schema.",
+      "input": {
+        "value": 5,
+        "unit": "Hz",
+        "fieldId": "detuning_hz",
+        "declaredUnit": {},
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "dev-missing-field-id",
+      "description": "No candidates and no explicit field id means the detuning field cannot be bound.",
+      "input": {
+        "value": 5,
+        "unit": "Hz",
+        "fieldId": "",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "dev-invalid-value-inf",
+      "description": "Positive infinity is not a finite detuning value.",
+      "input": {
+        "value": 1e999,
+        "unit": "Hz",
+        "fieldId": "detuning_hz",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "invalid-value",
+        "checks": null
+      }
+    },
+    {
+      "id": "dev-invalid-value-neg-inf",
+      "description": "Negative infinity is not a finite detuning value.",
+      "input": {
+        "value": -1e999,
+        "unit": "kHz",
+        "fieldId": "detuning_khz",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "invalid-value",
+        "checks": null
+      }
+    },
+    {
+      "id": "dev-drive-field-id",
+      "description": "The explicit field id names the drive column, not the detuning column.",
+      "input": {
+        "value": 0.5,
+        "unit": "kHz",
+        "fieldId": "drive_freq",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "candidates": [
+          {
+            "fieldId": "drive_freq",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "detuning_freq",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "dev-unknown-role",
+      "description": "The matching candidate has an unknown role, so detuning cannot be confirmed.",
+      "input": {
+        "value": 10,
+        "unit": "Hz",
+        "fieldId": "ambiguous_field",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "candidates": [
+          {
+            "fieldId": "ambiguous_field",
+            "unit": "Hz",
+            "role": "unknown"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "dev-field-not-in-candidates",
+      "description": "fieldId does not appear in the candidate table at all.",
+      "input": {
+        "value": 0.5,
+        "unit": "kHz",
+        "fieldId": "some_other_field",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "candidates": [
+          {
+            "fieldId": "drive_freq",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "detuning_freq",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "dev-conflict-rad-hz",
+      "description": "Header declares rad/s while schema declares Hz.",
+      "input": {
+        "value": 100,
+        "unit": "Hz",
+        "fieldId": "detuning_hz",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "metadata-conflict",
+        "checks": null
+      }
+    }
+  ]
+}

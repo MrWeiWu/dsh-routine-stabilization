@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Copyright (C) 2026 The dsh-routine-stabilization authors
+
+# Route and withdraw evidence under the plugin's own reports/ layout.
+# A preset that mounts this bundle (and its skill) is registered by the Host
+# half at activation; this patch only adds the profile-level Host row.
+- insert:
+    - id: routine-stabilization
+      name: 'dsh-routine-stabilization'
+      config: {}

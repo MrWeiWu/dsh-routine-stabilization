@@ -1,0 +1,938 @@
+{
+  "schemaVersion": 1,
+  "set": "challenge",
+  "provenance": "synthetic",
+  "frozenAt": "2026-11-04T00:00:00Z",
+  "cases": [
+    {
+      "id": "challenge-001",
+      "description": "challenge: empty fieldId with no candidates",
+      "input": {
+        "value": 901,
+        "unit": "Hz",
+        "fieldId": "",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-002",
+      "description": "challenge accept: negative dual-kHz detuning with explicit detuning field id",
+      "input": {
+        "value": -2.5,
+        "unit": "kHz",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "candidates": [
+          {
+            "fieldId": "drive_freq",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "detuning_freq",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": -2500,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "challenge-003",
+      "description": "challenge accept: Hz with schema-only declaration",
+      "input": {
+        "value": 245.5,
+        "unit": "Hz",
+        "fieldId": "detuning_hz",
+        "declaredUnit": {
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_hz",
+          "unit": "Hz",
+          "valueHz": 245.5,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "challenge-004",
+      "description": "challenge: dual kHz columns, empty fieldId",
+      "input": {
+        "value": 0.8,
+        "unit": "kHz",
+        "fieldId": "",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "candidates": [
+          {
+            "fieldId": "drive_freq",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "detuning_freq",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-005",
+      "description": "challenge: multiple plausible detuning candidates, no explicit id",
+      "input": {
+        "value": 880,
+        "unit": "Hz",
+        "fieldId": "",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "candidates": [
+          {
+            "fieldId": "carrier_detuning",
+            "unit": "Hz",
+            "role": "detuning"
+          },
+          {
+            "fieldId": "probe_detuning",
+            "unit": "Hz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-006",
+      "description": "challenge: multiple plausible detuning candidates, no explicit id",
+      "input": {
+        "value": 0.75,
+        "unit": "kHz",
+        "fieldId": "",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "candidates": [
+          {
+            "fieldId": "detuning_freq",
+            "unit": "kHz",
+            "role": "detuning"
+          },
+          {
+            "fieldId": "trap_detuning",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-007",
+      "description": "challenge: metadata source is unverified",
+      "input": {
+        "value": 7.5,
+        "unit": "kHz",
+        "fieldId": "laser_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "unverified"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-008",
+      "description": "challenge: unit field omitted (declared kHz)",
+      "input": {
+        "value": 0.4,
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-009",
+      "description": "challenge: unsupported declared schema unit rpm",
+      "input": {
+        "value": 5.5,
+        "unit": "rpm",
+        "fieldId": "trap_detuning",
+        "declaredUnit": {
+          "header": "rpm",
+          "schema": "rpm"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "unsupported-unit",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-010",
+      "description": "challenge: header kHz vs schema Hz conflict",
+      "input": {
+        "value": 101,
+        "unit": "kHz",
+        "fieldId": "carrier_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "metadata-conflict",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-011",
+      "description": "challenge: dual Hz columns, empty fieldId",
+      "input": {
+        "value": 420,
+        "unit": "Hz",
+        "fieldId": "",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "candidates": [
+          {
+            "fieldId": "rf_drive",
+            "unit": "Hz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "carrier_detuning",
+            "unit": "Hz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-012",
+      "description": "challenge: non-finite value +Infinity in Hz",
+      "input": {
+        "value": 1e999,
+        "unit": "Hz",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "invalid-value",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-013",
+      "description": "challenge accept: very small kHz value with explicit field id",
+      "input": {
+        "value": 0.000125,
+        "unit": "kHz",
+        "fieldId": "detuning_khz",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_khz",
+          "unit": "Hz",
+          "valueHz": 0.125,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "challenge-014",
+      "description": "challenge: header rad/s vs schema kHz conflict",
+      "input": {
+        "value": 102,
+        "unit": "rad/s",
+        "fieldId": "trap_detuning",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "metadata-conflict",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-015",
+      "description": "challenge: unit field omitted (declared kHz)",
+      "input": {
+        "value": 1.5,
+        "fieldId": "carrier_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-016",
+      "description": "challenge: unit field omitted (declared rad/s)",
+      "input": {
+        "value": 502.6548245743669,
+        "fieldId": "trap_detuning",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-017",
+      "description": "challenge: header Hz vs schema rad/s conflict",
+      "input": {
+        "value": 100,
+        "unit": "Hz",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "metadata-conflict",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-018",
+      "description": "challenge: non-finite value +Infinity in rad/s",
+      "input": {
+        "value": 1e999,
+        "unit": "rad/s",
+        "fieldId": "trap_detuning",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "invalid-value",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-019",
+      "description": "challenge: unit field omitted (declared Hz)",
+      "input": {
+        "value": 12.5,
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-020",
+      "description": "challenge: header Hz vs schema kHz conflict",
+      "input": {
+        "value": 103,
+        "unit": "Hz",
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "metadata-conflict",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-021",
+      "description": "challenge: dual rad/s columns, fieldId points at the drive column",
+      "input": {
+        "value": 3.5,
+        "unit": "rad/s",
+        "fieldId": "modulation_drive",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "candidates": [
+          {
+            "fieldId": "modulation_drive",
+            "unit": "rad/s",
+            "role": "drive"
+          },
+          {
+            "fieldId": "probe_detuning",
+            "unit": "rad/s",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-022",
+      "description": "challenge: non-finite value -Infinity in Hz",
+      "input": {
+        "value": -1e999,
+        "unit": "Hz",
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "invalid-value",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-023",
+      "description": "challenge: empty fieldId with no candidates",
+      "input": {
+        "value": 900,
+        "unit": "Hz",
+        "fieldId": "",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-024",
+      "description": "challenge: dual kHz columns, fieldId points at the drive column",
+      "input": {
+        "value": 1.5,
+        "unit": "kHz",
+        "fieldId": "rf_drive",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "candidates": [
+          {
+            "fieldId": "rf_drive",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "carrier_detuning",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-025",
+      "description": "challenge: unsupported declared schema unit GHz",
+      "input": {
+        "value": 4.5,
+        "unit": "GHz",
+        "fieldId": "carrier_detuning",
+        "declaredUnit": {
+          "header": "GHz",
+          "schema": "GHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "unsupported-unit",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-026",
+      "description": "challenge accept: negative rad/s value",
+      "input": {
+        "value": -753.9822368615503,
+        "unit": "rad/s",
+        "fieldId": "detuning_rad",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_rad",
+          "unit": "Hz",
+          "valueHz": -120,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "challenge-027",
+      "description": "challenge: non-finite value -Infinity in kHz",
+      "input": {
+        "value": -1e999,
+        "unit": "kHz",
+        "fieldId": "carrier_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "invalid-value",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-028",
+      "description": "challenge: same field id appears as both drive and detuning candidate",
+      "input": {
+        "value": 2,
+        "unit": "kHz",
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "candidates": [
+          {
+            "fieldId": "probe_detuning",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "probe_detuning",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-029",
+      "description": "challenge: header kHz vs schema rad/s conflict",
+      "input": {
+        "value": 104,
+        "unit": "kHz",
+        "fieldId": "offset_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "metadata-conflict",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-030",
+      "description": "challenge: declaredUnit present but empty",
+      "input": {
+        "value": 188.49555921538757,
+        "unit": "rad/s",
+        "fieldId": "spectroscopy_detuning",
+        "declaredUnit": {},
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-031",
+      "description": "challenge: declaredUnit absent entirely",
+      "input": {
+        "value": 60,
+        "unit": "Hz",
+        "fieldId": "trap_detuning",
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-032",
+      "description": "challenge: unsupported declared schema unit MHz",
+      "input": {
+        "value": 3.5,
+        "unit": "MHz",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "MHz",
+          "schema": "MHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "unsupported-unit",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-033",
+      "description": "challenge: same field id appears as both drive and detuning candidate",
+      "input": {
+        "value": 3,
+        "unit": "kHz",
+        "fieldId": "offset_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "candidates": [
+          {
+            "fieldId": "offset_detuning",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "offset_detuning",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-034",
+      "description": "challenge accept: two detuning candidates but explicit id picks one",
+      "input": {
+        "value": 0.75,
+        "unit": "kHz",
+        "fieldId": "detuning_b",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "candidates": [
+          {
+            "fieldId": "detuning_a",
+            "unit": "kHz",
+            "role": "detuning"
+          },
+          {
+            "fieldId": "detuning_b",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_b",
+          "unit": "Hz",
+          "valueHz": 750,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "challenge-035",
+      "description": "challenge: unsupported declared schema unit T/s",
+      "input": {
+        "value": 6.5,
+        "unit": "T/s",
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "header": "T/s",
+          "schema": "T/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "unsupported-unit",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-036",
+      "description": "challenge accept: rad/s with header-only declaration and one detuning candidate",
+      "input": {
+        "value": 1884.9555921538758,
+        "unit": "rad/s",
+        "fieldId": "detuning_rad",
+        "declaredUnit": {
+          "header": "rad/s"
+        },
+        "candidates": [
+          {
+            "fieldId": "detuning_rad",
+            "unit": "rad/s",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_rad",
+          "unit": "Hz",
+          "valueHz": 300,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "challenge-037",
+      "description": "challenge: dual rad/s columns, empty fieldId",
+      "input": {
+        "value": 471.23889803846896,
+        "unit": "rad/s",
+        "fieldId": "",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "candidates": [
+          {
+            "fieldId": "excitation_drive",
+            "unit": "rad/s",
+            "role": "drive"
+          },
+          {
+            "fieldId": "trap_detuning",
+            "unit": "rad/s",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-038",
+      "description": "challenge: metadata source is unverified",
+      "input": {
+        "value": 8.5,
+        "unit": "kHz",
+        "fieldId": "spectroscopy_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "unverified"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-039",
+      "description": "challenge: dual Hz columns, fieldId points at the drive column",
+      "input": {
+        "value": 2.5,
+        "unit": "Hz",
+        "fieldId": "excitation_drive",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "candidates": [
+          {
+            "fieldId": "excitation_drive",
+            "unit": "Hz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "trap_detuning",
+            "unit": "Hz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-040",
+      "description": "challenge: declaredUnit absent entirely",
+      "input": {
+        "value": 61,
+        "unit": "Hz",
+        "fieldId": "probe_detuning",
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    }
+  ]
+}

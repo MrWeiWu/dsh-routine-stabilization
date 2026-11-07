@@ -1,0 +1,10 @@
+{
+  "meta": {
+    "title": "Routine stabilization",
+    "description": "Versioned LLM routines with runtime admission, CI gates, blind evidence and paired cost comparison."
+  },
+  "settings": {
+    "title": "Routine stabilization",
+    "description": "Keep read-only routines whose results are checked before use."
+  }
+}

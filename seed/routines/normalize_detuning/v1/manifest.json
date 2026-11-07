@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "id": "normalize_detuning",
+  "version": "1",
+  "title": "Normalize detuning to Hz",
+  "summary": "Admit an explicitly declared detuning value, preserve its field identity and sign, and normalize Hz / kHz / rad/s to Hz. Ambiguous field bindings and conflicting unit declarations are deferred to the user instead of guessed.",
+  "owner": "routine-stabilization@local",
+  "contractRevision": "normalize_detuning/v1",
+  "allowedEffects": [
+    "read-only"
+  ],
+  "dependencies": [],
+  "inputs": {
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "unit",
+        "fieldId",
+        "declaredUnit",
+        "metadataSource"
+      ],
+      "properties": {
+        "value": {
+          "type": "number",
+          "description": "Raw numeric value in the declared input unit."
+        },
+        "unit": {
+          "enum": [
+            "Hz",
+            "kHz",
+            "rad/s"
+          ]
+        },
+        "fieldId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Explicit identifier of the detuning field."
+        },
+        "declaredUnit": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "header": {
+              "type": "string"
+            },
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "candidates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "fieldId",
+              "unit",
+              "role"
+            ],
+            "properties": {
+              "fieldId": {
+                "type": "string"
+              },
+              "unit": {
+                "enum": [
+                  "Hz",
+                  "kHz",
+                  "rad/s"
+                ]
+              },
+              "role": {
+                "enum": [
+                  "detuning",
+                  "drive",
+                  "unknown"
+                ]
+              }
+            }
+          }
+        },
+        "metadataSource": {
+          "enum": [
+            "trusted-schema",
+            "unverified"
+          ]
+        }
+      }
+    },
+    "metadata": {
+      "unitEnum": [
+        "Hz",
+        "kHz",
+        "rad/s"
+      ],
+      "requires": [
+        "fieldId",
+        "unit",
+        "declaredUnit",
+        "metadataSource"
+      ]
+    }
+  },
+  "admission": {
+    "predicate": "guard.js#decide",
+    "deferReasons": {
+      "missing-metadata": "Required metadata is absent: trusted metadataSource, unit, declaredUnit (header or schema), or an explicit fieldId when no candidate table is supplied.",
+      "unsupported-unit": "The input unit is not one of Hz / kHz / rad/s.",
+      "invalid-value": "The input value is not a finite number (NaN or +/-Infinity).",
+      "metadata-conflict": "declaredUnit.header and declaredUnit.schema are both present but disagree, so no numeric answer is admissible.",
+      "competing-fields": "A candidate table is present but fieldId does not resolve uniquely to a single detuning field (missing/empty id, drive field, unknown role, or several plausible fields)."
+    }
+  },
+  "binding": {
+    "entry": "binding.js#bind",
+    "preservesOriginalInput": true
+  },
+  "execution": {
+    "entry": "execution.js#run",
+    "outputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fieldId",
+        "sourceUnit",
+        "valueHz"
+      ],
+      "requiredFields": [
+        "fieldId",
+        "sourceUnit",
+        "valueHz"
+      ],
+      "properties": {
+        "fieldId": {
+          "type": "string"
+        },
+        "sourceUnit": {
+          "enum": [
+            "Hz",
+            "kHz",
+            "rad/s"
+          ]
+        },
+        "valueHz": {
+          "type": "number"
+        }
+      }
+    }
+  },
+  "postconditions": [
+    {
+      "id": "finite-output",
+      "description": "valueHz is a finite number."
+    },
+    {
+      "id": "preserve-field-id",
+      "description": "output.fieldId is identical to the bound input.fieldId."
+    },
+    {
+      "id": "unit-hz",
+      "description": "output.valueHz is expressed in Hz and output.sourceUnit records the original unit."
+    },
+    {
+      "id": "sign-preserved",
+      "description": "For non-zero input values, sign(valueHz) equals sign(input.value); negative detunings stay negative."
+    }
+  ],
+  "errorPolicy": {
+    "onCheckFailure": "discard-and-fallback",
+    "onUnavailable": "ask-user"
+  },
+  "fallback": {
+    "mode": "ask-user",
+    "description": "If admission defers, a postcondition fails, or execution is unavailable, the combined value is discarded and the user is asked to confirm the field binding and underlying unit. The runtime never falls back to a silent numeric guess."
+  },
+  "evidence": {
+    "derivationTraces": [],
+    "fixtureSets": {
+      "dev": "fixtures/normalize_detuning/v1/dev.json",
+      "audit": "fixtures/normalize_detuning/v1/audit.json",
+      "challenge": "fixtures/normalize_detuning/v1/challenge.json"
+    },
+    "evaluator": "evals/normalize_detuning/v1/reference_check.mjs",
+    "provenance": "synthetic",
+    "approvedRelease": null,
+    "withdrawalTrigger": "Withdraw the released version on any postcondition failure, any challenge-set case that is auto-accepted with a wrong answer, or any silent error on the audit set; fall back to ask-user until a new version passes the reference check."
+  }
+}

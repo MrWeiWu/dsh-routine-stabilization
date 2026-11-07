@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "root": null,
+  "fallback": null,
+  "routines": {
+    "normalize_detuning": {
+      "title": "Normalize detuning to Hz",
+      "versions": {
+        "1": {
+          "status": "candidate",
+          "createdAt": "2026-11-04T00:00:00Z",
+          "evidenceHash": null,
+          "approvedRelease": null
+        }
+      }
+    }
+  }
+}

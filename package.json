@@ -1,0 +1,66 @@
+{
+  "name": "dsh-routine-stabilization",
+  "version": "0.1.0",
+  "description": "Versioned LLM routine registry for the DeepSeek Harness: runtime admission, CI evidence gates, blind challenge, paired cost comparison, agent preset and Settings panel.",
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "lib/**/*.js",
+    "seed/**",
+    "preset/**",
+    "skills/**",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "scripts/**"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-settings"
+      ]
+    }
+  },
+  "license": "AGPL-3.0-or-later",
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "llm",
+    "routine",
+    "evaluation",
+    "guardrails",
+    "agpl"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrWeiWu/dsh-routine-stabilization.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MrWeiWu/dsh-routine-stabilization/issues"
+  },
+  "homepage": "https://github.com/MrWeiWu/dsh-routine-stabilization#readme",
+  "scripts": {
+    "check": "bash scripts/check.sh",
+    "test": "node lib/selfcheck.mjs",
+    "reference": "node seed/evals/normalize_detuning/v1/reference_check.mjs",
+    "preset:validate": "node preset/validate.mjs"
+  }
+}

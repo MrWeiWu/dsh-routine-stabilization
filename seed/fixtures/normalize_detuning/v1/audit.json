@@ -1,0 +1,2742 @@
+{
+  "schemaVersion": 1,
+  "set": "audit",
+  "provenance": "synthetic",
+  "frozenAt": "2026-11-04T00:00:00Z",
+  "cases": [
+    {
+      "id": "audit-001",
+      "description": "synthetic accept: rad/s detuning on probe_detuning with drive column modulation_drive",
+      "input": {
+        "value": -1563.62021,
+        "unit": "rad/s",
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "modulation_drive",
+            "unit": "rad/s",
+            "role": "drive"
+          },
+          {
+            "fieldId": "probe_detuning",
+            "unit": "rad/s",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": -248.85788553988746,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-002",
+      "description": "synthetic accept: rad/s detuning on spectroscopy_detuning",
+      "input": {
+        "value": -2199.646019,
+        "unit": "rad/s",
+        "fieldId": "spectroscopy_detuning",
+        "declaredUnit": {
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": -350.08453697625913,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-003",
+      "description": "synthetic accept: kHz detuning on spectroscopy_detuning with drive column modulation_drive",
+      "input": {
+        "value": -4.810549,
+        "unit": "kHz",
+        "fieldId": "spectroscopy_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "modulation_drive",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "spectroscopy_detuning",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": -4810.549,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-004",
+      "description": "synthetic defer: matching candidate role is unknown",
+      "input": {
+        "value": 300,
+        "unit": "Hz",
+        "fieldId": "trap_detuning",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "candidates": [
+          {
+            "fieldId": "trap_detuning",
+            "unit": "Hz",
+            "role": "unknown"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-005",
+      "description": "synthetic accept: kHz detuning on trap_detuning",
+      "input": {
+        "value": 0.85011,
+        "unit": "kHz",
+        "fieldId": "trap_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "trap_detuning",
+          "unit": "Hz",
+          "valueHz": 850.11,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-006",
+      "description": "synthetic accept: rad/s detuning on probe_detuning with drive column modulation_drive",
+      "input": {
+        "value": -2538.23077,
+        "unit": "rad/s",
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "modulation_drive",
+            "unit": "rad/s",
+            "role": "drive"
+          },
+          {
+            "fieldId": "probe_detuning",
+            "unit": "rad/s",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": -403.97197375344774,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-007",
+      "description": "synthetic defer: non-finite value in Hz",
+      "input": {
+        "value": 1e999,
+        "unit": "Hz",
+        "fieldId": "carrier_detuning",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "invalid-value",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-008",
+      "description": "synthetic accept: Hz detuning on offset_detuning with drive column excitation_drive",
+      "input": {
+        "value": 2716.233,
+        "unit": "Hz",
+        "fieldId": "offset_detuning",
+        "declaredUnit": {
+          "header": "Hz"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "excitation_drive",
+            "unit": "Hz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "offset_detuning",
+            "unit": "Hz",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "offset_detuning",
+          "unit": "Hz",
+          "valueHz": 2716.233,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-009",
+      "description": "synthetic defer: dual kHz columns but fieldId is empty",
+      "input": {
+        "value": 0.75,
+        "unit": "kHz",
+        "fieldId": "",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "candidates": [
+          {
+            "fieldId": "rf_drive",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "carrier_detuning",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-010",
+      "description": "synthetic accept: Hz detuning on probe_detuning",
+      "input": {
+        "value": -325.776,
+        "unit": "Hz",
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": -325.776,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-011",
+      "description": "synthetic accept: rad/s detuning on laser_detuning",
+      "input": {
+        "value": 372.985916,
+        "unit": "rad/s",
+        "fieldId": "laser_detuning",
+        "declaredUnit": {
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": 59.36255223505845,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-012",
+      "description": "synthetic defer: declaredUnit missing",
+      "input": {
+        "value": -250,
+        "unit": "kHz",
+        "fieldId": "offset_detuning",
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-013",
+      "description": "synthetic accept: rad/s detuning on carrier_detuning",
+      "input": {
+        "value": -1158.142409,
+        "unit": "rad/s",
+        "fieldId": "carrier_detuning",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "carrier_detuning",
+          "unit": "Hz",
+          "valueHz": -184.3240891967056,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-014",
+      "description": "synthetic accept: Hz detuning on trap_detuning with drive column drive_freq",
+      "input": {
+        "value": 2629.161,
+        "unit": "Hz",
+        "fieldId": "trap_detuning",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "drive_freq",
+            "unit": "Hz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "trap_detuning",
+            "unit": "Hz",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "trap_detuning",
+          "unit": "Hz",
+          "valueHz": 2629.161,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-015",
+      "description": "synthetic defer: no candidates and no explicit fieldId",
+      "input": {
+        "value": 300,
+        "unit": "Hz",
+        "fieldId": "",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-016",
+      "description": "synthetic accept: Hz detuning on trap_detuning",
+      "input": {
+        "value": -1043.476,
+        "unit": "Hz",
+        "fieldId": "trap_detuning",
+        "declaredUnit": {
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "trap_detuning",
+          "unit": "Hz",
+          "valueHz": -1043.476,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-017",
+      "description": "synthetic defer: header Hz conflicts with schema rad/s",
+      "input": {
+        "value": 123.45,
+        "unit": "Hz",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "metadata-conflict",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-018",
+      "description": "synthetic accept: Hz detuning on laser_detuning",
+      "input": {
+        "value": 4362.415,
+        "unit": "Hz",
+        "fieldId": "laser_detuning",
+        "declaredUnit": {
+          "header": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": 4362.415,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-019",
+      "description": "synthetic accept: Hz detuning on laser_detuning",
+      "input": {
+        "value": -1491.927,
+        "unit": "Hz",
+        "fieldId": "laser_detuning",
+        "declaredUnit": {
+          "header": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": -1491.927,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-020",
+      "description": "synthetic accept: kHz detuning on detuning_freq with drive column excitation_drive",
+      "input": {
+        "value": 0.110376,
+        "unit": "kHz",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "excitation_drive",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "detuning_freq",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 110.376,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-021",
+      "description": "synthetic accept: rad/s detuning on aom_detuning",
+      "input": {
+        "value": 2658.946991,
+        "unit": "rad/s",
+        "fieldId": "aom_detuning",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "aom_detuning",
+          "unit": "Hz",
+          "valueHz": 423.18455703697134,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-022",
+      "description": "synthetic accept: rad/s detuning on laser_detuning",
+      "input": {
+        "value": -2748.786754,
+        "unit": "rad/s",
+        "fieldId": "laser_detuning",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": -437.48299940462573,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-023",
+      "description": "synthetic accept: kHz detuning on trap_detuning",
+      "input": {
+        "value": 0.053663,
+        "unit": "kHz",
+        "fieldId": "trap_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "trap_detuning",
+          "unit": "Hz",
+          "valueHz": 53.663000000000004,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-024",
+      "description": "synthetic defer: declaredUnit missing",
+      "input": {
+        "value": -251,
+        "unit": "kHz",
+        "fieldId": "laser_detuning",
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-025",
+      "description": "synthetic accept: rad/s detuning on spectroscopy_detuning with drive column rf_drive",
+      "input": {
+        "value": 1238.455366,
+        "unit": "rad/s",
+        "fieldId": "spectroscopy_detuning",
+        "declaredUnit": {
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "rf_drive",
+            "unit": "rad/s",
+            "role": "drive"
+          },
+          {
+            "fieldId": "spectroscopy_detuning",
+            "unit": "rad/s",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": 197.1062932975824,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-026",
+      "description": "synthetic accept: rad/s detuning on detuning_freq",
+      "input": {
+        "value": -779.084632,
+        "unit": "rad/s",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": -123.99517026973024,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-027",
+      "description": "synthetic defer: dual kHz columns but fieldId is empty",
+      "input": {
+        "value": 0.5,
+        "unit": "kHz",
+        "fieldId": "",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "candidates": [
+          {
+            "fieldId": "drive_freq",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "detuning_freq",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-028",
+      "description": "synthetic defer: header rad/s conflicts with schema kHz",
+      "input": {
+        "value": 125.45,
+        "unit": "rad/s",
+        "fieldId": "trap_detuning",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "metadata-conflict",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-029",
+      "description": "synthetic accept: Hz detuning on probe_detuning with drive column modulation_drive",
+      "input": {
+        "value": 1736.915,
+        "unit": "Hz",
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "modulation_drive",
+            "unit": "Hz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "probe_detuning",
+            "unit": "Hz",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": 1736.915,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-030",
+      "description": "synthetic accept: kHz detuning on aom_detuning with drive column excitation_drive",
+      "input": {
+        "value": 1.425892,
+        "unit": "kHz",
+        "fieldId": "aom_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "excitation_drive",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "aom_detuning",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "aom_detuning",
+          "unit": "Hz",
+          "valueHz": 1425.8919999999998,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-031",
+      "description": "synthetic accept: Hz detuning on trap_detuning with drive column excitation_drive",
+      "input": {
+        "value": -3876.41,
+        "unit": "Hz",
+        "fieldId": "trap_detuning",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "excitation_drive",
+            "unit": "Hz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "trap_detuning",
+            "unit": "Hz",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "trap_detuning",
+          "unit": "Hz",
+          "valueHz": -3876.41,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-032",
+      "description": "synthetic defer: non-finite value in kHz",
+      "input": {
+        "value": -1e999,
+        "unit": "kHz",
+        "fieldId": "trap_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "invalid-value",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-033",
+      "description": "synthetic accept: rad/s detuning on spectroscopy_detuning",
+      "input": {
+        "value": -1417.731828,
+        "unit": "rad/s",
+        "fieldId": "spectroscopy_detuning",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": -225.63902840490874,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-034",
+      "description": "synthetic accept: Hz detuning on detuning_freq",
+      "input": {
+        "value": 12.023,
+        "unit": "Hz",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 12.023,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-035",
+      "description": "synthetic accept: kHz detuning on probe_detuning with drive column modulation_drive",
+      "input": {
+        "value": -1.477501,
+        "unit": "kHz",
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "modulation_drive",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "probe_detuning",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": -1477.501,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-036",
+      "description": "synthetic accept: kHz detuning on aom_detuning with drive column excitation_drive",
+      "input": {
+        "value": 3.091914,
+        "unit": "kHz",
+        "fieldId": "aom_detuning",
+        "declaredUnit": {
+          "header": "kHz"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "excitation_drive",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "aom_detuning",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "aom_detuning",
+          "unit": "Hz",
+          "valueHz": 3091.914,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-037",
+      "description": "synthetic defer: matching candidate role is unknown",
+      "input": {
+        "value": 301,
+        "unit": "Hz",
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "candidates": [
+          {
+            "fieldId": "probe_detuning",
+            "unit": "Hz",
+            "role": "unknown"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-038",
+      "description": "synthetic defer: non-finite value in rad/s",
+      "input": {
+        "value": 1e999,
+        "unit": "rad/s",
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "invalid-value",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-039",
+      "description": "synthetic accept: kHz detuning on laser_detuning",
+      "input": {
+        "value": -4.673192,
+        "unit": "kHz",
+        "fieldId": "laser_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": -4673.192,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-040",
+      "description": "synthetic accept: rad/s detuning on probe_detuning",
+      "input": {
+        "value": 2468.186339,
+        "unit": "rad/s",
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": 392.8240563237385,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-041",
+      "description": "synthetic accept: rad/s detuning on detuning_freq",
+      "input": {
+        "value": -2323.021246,
+        "unit": "rad/s",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": -369.7203142083938,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-042",
+      "description": "synthetic defer: explicit fieldId names a drive column",
+      "input": {
+        "value": 3.5,
+        "unit": "kHz",
+        "fieldId": "rf_drive",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "candidates": [
+          {
+            "fieldId": "rf_drive",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "trap_detuning",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-043",
+      "description": "synthetic accept: kHz detuning on detuning_freq with drive column modulation_drive",
+      "input": {
+        "value": -3.323876,
+        "unit": "kHz",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "modulation_drive",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "detuning_freq",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": -3323.8759999999997,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-044",
+      "description": "synthetic accept: kHz detuning on spectroscopy_detuning with drive column excitation_drive",
+      "input": {
+        "value": 1.049295,
+        "unit": "kHz",
+        "fieldId": "spectroscopy_detuning",
+        "declaredUnit": {
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "excitation_drive",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "spectroscopy_detuning",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": 1049.295,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-045",
+      "description": "synthetic accept: rad/s detuning on carrier_detuning",
+      "input": {
+        "value": 1690.915205,
+        "unit": "rad/s",
+        "fieldId": "carrier_detuning",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "carrier_detuning",
+          "unit": "Hz",
+          "valueHz": 269.11751322499555,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-046",
+      "description": "synthetic accept: Hz detuning on spectroscopy_detuning with drive column rf_drive",
+      "input": {
+        "value": 956.577,
+        "unit": "Hz",
+        "fieldId": "spectroscopy_detuning",
+        "declaredUnit": {
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "rf_drive",
+            "unit": "Hz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "spectroscopy_detuning",
+            "unit": "Hz",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": 956.577,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-047",
+      "description": "synthetic accept: Hz detuning on aom_detuning",
+      "input": {
+        "value": 1614.734,
+        "unit": "Hz",
+        "fieldId": "aom_detuning",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "aom_detuning",
+          "unit": "Hz",
+          "valueHz": 1614.734,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-048",
+      "description": "synthetic accept: rad/s detuning on detuning_freq",
+      "input": {
+        "value": 542.769893,
+        "unit": "rad/s",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 86.38451143240913,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-049",
+      "description": "synthetic defer: explicit fieldId names a drive column",
+      "input": {
+        "value": 2.5,
+        "unit": "kHz",
+        "fieldId": "drive_freq",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "candidates": [
+          {
+            "fieldId": "drive_freq",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "carrier_detuning",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ],
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-050",
+      "description": "synthetic accept: rad/s detuning on probe_detuning",
+      "input": {
+        "value": 985.585765,
+        "unit": "rad/s",
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": 156.86084634075715,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-051",
+      "description": "synthetic accept: Hz detuning on spectroscopy_detuning",
+      "input": {
+        "value": 4382.328,
+        "unit": "Hz",
+        "fieldId": "spectroscopy_detuning",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": 4382.328,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-052",
+      "description": "synthetic accept: kHz detuning on carrier_detuning",
+      "input": {
+        "value": 2.384854,
+        "unit": "kHz",
+        "fieldId": "carrier_detuning",
+        "declaredUnit": {
+          "header": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "carrier_detuning",
+          "unit": "Hz",
+          "valueHz": 2384.854,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-053",
+      "description": "synthetic accept: rad/s detuning on spectroscopy_detuning",
+      "input": {
+        "value": -2886.850104,
+        "unit": "rad/s",
+        "fieldId": "spectroscopy_detuning",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": -459.45646401695217,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-054",
+      "description": "synthetic accept: kHz detuning on probe_detuning",
+      "input": {
+        "value": 0.577335,
+        "unit": "kHz",
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": 577.335,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-055",
+      "description": "synthetic accept: rad/s detuning on detuning_freq with drive column excitation_drive",
+      "input": {
+        "value": 2843.982522,
+        "unit": "rad/s",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "excitation_drive",
+            "unit": "rad/s",
+            "role": "drive"
+          },
+          {
+            "fieldId": "detuning_freq",
+            "unit": "rad/s",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 452.63387644325496,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-056",
+      "description": "synthetic defer: unsupported unit GHz",
+      "input": {
+        "value": 11,
+        "unit": "GHz",
+        "fieldId": "carrier_detuning",
+        "declaredUnit": {
+          "header": "GHz",
+          "schema": "GHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "unsupported-unit",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-057",
+      "description": "synthetic accept: Hz detuning on detuning_freq with drive column excitation_drive",
+      "input": {
+        "value": 3814.645,
+        "unit": "Hz",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "excitation_drive",
+            "unit": "Hz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "detuning_freq",
+            "unit": "Hz",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 3814.645,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-058",
+      "description": "synthetic accept: Hz detuning on offset_detuning",
+      "input": {
+        "value": 3926.6,
+        "unit": "Hz",
+        "fieldId": "offset_detuning",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "offset_detuning",
+          "unit": "Hz",
+          "valueHz": 3926.6,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-059",
+      "description": "synthetic accept: kHz detuning on probe_detuning",
+      "input": {
+        "value": -2.527537,
+        "unit": "kHz",
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": -2527.5370000000003,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-060",
+      "description": "synthetic accept: Hz detuning on carrier_detuning",
+      "input": {
+        "value": -927.334,
+        "unit": "Hz",
+        "fieldId": "carrier_detuning",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "carrier_detuning",
+          "unit": "Hz",
+          "valueHz": -927.334,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-061",
+      "description": "synthetic accept: kHz detuning on carrier_detuning",
+      "input": {
+        "value": -2.836401,
+        "unit": "kHz",
+        "fieldId": "carrier_detuning",
+        "declaredUnit": {
+          "header": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "carrier_detuning",
+          "unit": "Hz",
+          "valueHz": -2836.401,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-062",
+      "description": "synthetic accept: kHz detuning on aom_detuning",
+      "input": {
+        "value": 3.740857,
+        "unit": "kHz",
+        "fieldId": "aom_detuning",
+        "declaredUnit": {
+          "header": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "aom_detuning",
+          "unit": "Hz",
+          "valueHz": 3740.857,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-063",
+      "description": "synthetic accept: kHz detuning on spectroscopy_detuning",
+      "input": {
+        "value": -0.005065,
+        "unit": "kHz",
+        "fieldId": "spectroscopy_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": -5.065,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-064",
+      "description": "synthetic accept: rad/s detuning on detuning_freq with drive column rf_drive",
+      "input": {
+        "value": 1643.775674,
+        "unit": "rad/s",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "rf_drive",
+            "unit": "rad/s",
+            "role": "drive"
+          },
+          {
+            "fieldId": "detuning_freq",
+            "unit": "rad/s",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 261.6150238513119,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-065",
+      "description": "synthetic accept: kHz detuning on offset_detuning with drive column modulation_drive",
+      "input": {
+        "value": 4.390903,
+        "unit": "kHz",
+        "fieldId": "offset_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "modulation_drive",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "offset_detuning",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "offset_detuning",
+          "unit": "Hz",
+          "valueHz": 4390.902999999999,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-066",
+      "description": "synthetic defer: metadata source is unverified",
+      "input": {
+        "value": 1.5,
+        "unit": "Hz",
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "unverified"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-067",
+      "description": "synthetic accept: kHz detuning on aom_detuning",
+      "input": {
+        "value": 2.288062,
+        "unit": "kHz",
+        "fieldId": "aom_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "aom_detuning",
+          "unit": "Hz",
+          "valueHz": 2288.062,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-068",
+      "description": "synthetic accept: kHz detuning on detuning_freq",
+      "input": {
+        "value": 2.619508,
+        "unit": "kHz",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 2619.5080000000003,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-069",
+      "description": "synthetic accept: kHz detuning on offset_detuning",
+      "input": {
+        "value": 2.228982,
+        "unit": "kHz",
+        "fieldId": "offset_detuning",
+        "declaredUnit": {
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "offset_detuning",
+          "unit": "Hz",
+          "valueHz": 2228.982,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-070",
+      "description": "synthetic defer: header Hz conflicts with schema kHz",
+      "input": {
+        "value": 126.45,
+        "unit": "Hz",
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "metadata-conflict",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-071",
+      "description": "synthetic defer: no candidates and no explicit fieldId",
+      "input": {
+        "value": 301,
+        "unit": "Hz",
+        "fieldId": "",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-072",
+      "description": "synthetic defer: header kHz conflicts with schema Hz",
+      "input": {
+        "value": 124.45,
+        "unit": "kHz",
+        "fieldId": "carrier_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "metadata-conflict",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-073",
+      "description": "synthetic accept: kHz detuning on spectroscopy_detuning",
+      "input": {
+        "value": 0.965907,
+        "unit": "kHz",
+        "fieldId": "spectroscopy_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": 965.9069999999999,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-074",
+      "description": "synthetic accept: rad/s detuning on trap_detuning",
+      "input": {
+        "value": 182.939783,
+        "unit": "rad/s",
+        "fieldId": "trap_detuning",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "trap_detuning",
+          "unit": "Hz",
+          "valueHz": 29.115770752608682,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-075",
+      "description": "synthetic accept: Hz detuning on trap_detuning with drive column drive_freq",
+      "input": {
+        "value": -1654.338,
+        "unit": "Hz",
+        "fieldId": "trap_detuning",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "drive_freq",
+            "unit": "Hz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "trap_detuning",
+            "unit": "Hz",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "trap_detuning",
+          "unit": "Hz",
+          "valueHz": -1654.338,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-076",
+      "description": "synthetic accept: kHz detuning on laser_detuning with drive column excitation_drive",
+      "input": {
+        "value": -1.308971,
+        "unit": "kHz",
+        "fieldId": "laser_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "excitation_drive",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "laser_detuning",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": -1308.971,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-077",
+      "description": "synthetic accept: rad/s detuning on spectroscopy_detuning with drive column rf_drive",
+      "input": {
+        "value": -1409.381947,
+        "unit": "rad/s",
+        "fieldId": "spectroscopy_detuning",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "rf_drive",
+            "unit": "rad/s",
+            "role": "drive"
+          },
+          {
+            "fieldId": "spectroscopy_detuning",
+            "unit": "rad/s",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": -224.31010356952967,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-078",
+      "description": "synthetic accept: Hz detuning on laser_detuning",
+      "input": {
+        "value": 2345.395,
+        "unit": "Hz",
+        "fieldId": "laser_detuning",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": 2345.395,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-079",
+      "description": "synthetic accept: rad/s detuning on detuning_freq with drive column modulation_drive",
+      "input": {
+        "value": 445.838732,
+        "unit": "rad/s",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "modulation_drive",
+            "unit": "rad/s",
+            "role": "drive"
+          },
+          {
+            "fieldId": "detuning_freq",
+            "unit": "rad/s",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 70.95743801962277,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-080",
+      "description": "synthetic accept: kHz detuning on detuning_freq",
+      "input": {
+        "value": 2.837561,
+        "unit": "kHz",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 2837.561,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-081",
+      "description": "synthetic accept: kHz detuning on laser_detuning",
+      "input": {
+        "value": -3.599804,
+        "unit": "kHz",
+        "fieldId": "laser_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": -3599.8039999999996,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-082",
+      "description": "synthetic defer: unsupported unit MHz",
+      "input": {
+        "value": 10,
+        "unit": "MHz",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "MHz",
+          "schema": "MHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "unsupported-unit",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-083",
+      "description": "synthetic defer: unsupported unit rpm",
+      "input": {
+        "value": 12,
+        "unit": "rpm",
+        "fieldId": "trap_detuning",
+        "declaredUnit": {
+          "header": "rpm",
+          "schema": "rpm"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "unsupported-unit",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-084",
+      "description": "synthetic accept: rad/s detuning on detuning_freq",
+      "input": {
+        "value": 82.0619,
+        "unit": "rad/s",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 13.060557024512805,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-085",
+      "description": "synthetic accept: rad/s detuning on offset_detuning",
+      "input": {
+        "value": -2056.78965,
+        "unit": "rad/s",
+        "fieldId": "offset_detuning",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "offset_detuning",
+          "unit": "Hz",
+          "valueHz": -327.34823969774936,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-086",
+      "description": "synthetic accept: rad/s detuning on probe_detuning",
+      "input": {
+        "value": -766.156704,
+        "unit": "rad/s",
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": -121.9376266245941,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-087",
+      "description": "synthetic accept: kHz detuning on spectroscopy_detuning",
+      "input": {
+        "value": -3.005672,
+        "unit": "kHz",
+        "fieldId": "spectroscopy_detuning",
+        "declaredUnit": {
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": -3005.672,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-088",
+      "description": "synthetic accept: Hz detuning on detuning_freq",
+      "input": {
+        "value": -2731.257,
+        "unit": "Hz",
+        "fieldId": "detuning_freq",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": -2731.257,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-089",
+      "description": "synthetic accept: Hz detuning on laser_detuning",
+      "input": {
+        "value": 2132.336,
+        "unit": "Hz",
+        "fieldId": "laser_detuning",
+        "declaredUnit": {
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": 2132.336,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-090",
+      "description": "synthetic accept: Hz detuning on laser_detuning",
+      "input": {
+        "value": -2742.005,
+        "unit": "Hz",
+        "fieldId": "laser_detuning",
+        "declaredUnit": {
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": -2742.005,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-091",
+      "description": "synthetic accept: rad/s detuning on probe_detuning",
+      "input": {
+        "value": -736.267746,
+        "unit": "rad/s",
+        "fieldId": "probe_detuning",
+        "declaredUnit": {
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": -117.18065121502805,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-092",
+      "description": "synthetic accept: rad/s detuning on spectroscopy_detuning",
+      "input": {
+        "value": -1048.437497,
+        "unit": "rad/s",
+        "fieldId": "spectroscopy_detuning",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": -166.86401017044417,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-093",
+      "description": "synthetic defer: metadata source is unverified",
+      "input": {
+        "value": 2.5,
+        "unit": "Hz",
+        "fieldId": "offset_detuning",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "unverified"
+      },
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-094",
+      "description": "synthetic accept: Hz detuning on aom_detuning",
+      "input": {
+        "value": -4675.842,
+        "unit": "Hz",
+        "fieldId": "aom_detuning",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "aom_detuning",
+          "unit": "Hz",
+          "valueHz": -4675.842,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-095",
+      "description": "synthetic accept: kHz detuning on offset_detuning with drive column excitation_drive",
+      "input": {
+        "value": 0.005413,
+        "unit": "kHz",
+        "fieldId": "offset_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "excitation_drive",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "offset_detuning",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "offset_detuning",
+          "unit": "Hz",
+          "valueHz": 5.413,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-096",
+      "description": "synthetic accept: Hz detuning on spectroscopy_detuning with drive column rf_drive",
+      "input": {
+        "value": 445.446,
+        "unit": "Hz",
+        "fieldId": "spectroscopy_detuning",
+        "declaredUnit": {
+          "header": "Hz",
+          "schema": "Hz"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "rf_drive",
+            "unit": "Hz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "spectroscopy_detuning",
+            "unit": "Hz",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": 445.446,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-097",
+      "description": "synthetic accept: rad/s detuning on offset_detuning with drive column drive_freq",
+      "input": {
+        "value": 967.602134,
+        "unit": "rad/s",
+        "fieldId": "offset_detuning",
+        "declaredUnit": {
+          "header": "rad/s",
+          "schema": "rad/s"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "drive_freq",
+            "unit": "rad/s",
+            "role": "drive"
+          },
+          {
+            "fieldId": "offset_detuning",
+            "unit": "rad/s",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "offset_detuning",
+          "unit": "Hz",
+          "valueHz": 153.9986625723665,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-098",
+      "description": "synthetic accept: Hz detuning on laser_detuning",
+      "input": {
+        "value": 3362.853,
+        "unit": "Hz",
+        "fieldId": "laser_detuning",
+        "declaredUnit": {
+          "header": "Hz"
+        },
+        "metadataSource": "trusted-schema"
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": 3362.853,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-099",
+      "description": "synthetic accept: Hz detuning on spectroscopy_detuning with drive column drive_freq",
+      "input": {
+        "value": -2300.922,
+        "unit": "Hz",
+        "fieldId": "spectroscopy_detuning",
+        "declaredUnit": {
+          "header": "Hz"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "drive_freq",
+            "unit": "Hz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "spectroscopy_detuning",
+            "unit": "Hz",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": -2300.922,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-100",
+      "description": "synthetic accept: kHz detuning on spectroscopy_detuning with drive column drive_freq",
+      "input": {
+        "value": 1.718008,
+        "unit": "kHz",
+        "fieldId": "spectroscopy_detuning",
+        "declaredUnit": {
+          "header": "kHz",
+          "schema": "kHz"
+        },
+        "metadataSource": "trusted-schema",
+        "candidates": [
+          {
+            "fieldId": "drive_freq",
+            "unit": "kHz",
+            "role": "drive"
+          },
+          {
+            "fieldId": "spectroscopy_detuning",
+            "unit": "kHz",
+            "role": "detuning"
+          }
+        ]
+      },
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": 1718.008,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    }
+  ]
+}

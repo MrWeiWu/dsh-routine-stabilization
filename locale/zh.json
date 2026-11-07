@@ -1,0 +1,10 @@
+{
+  "meta": {
+    "title": "例程稳定化",
+    "description": "可版本化的 LLM routine：运行时准入、CI 门禁、盲测证据与配对成本比较。"
+  },
+  "settings": {
+    "title": "例程稳定化",
+    "description": "维护只读 routine，并在使用前校验其结果。"
+  }
+}

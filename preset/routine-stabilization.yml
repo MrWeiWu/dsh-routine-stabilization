@@ -1,0 +1,91 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Copyright (C) 2026 The dsh-routine-stabilization authors
+
+# Agent preset `routine-stabilization` / 例程稳定化.
+#
+# This file is the Loader-YAML declaration of the preset: one
+# `@deepseek-ai/dsh-agent-preset` row whose `config` is the PresetDefinition.
+# It is the audited reference source for the declaration and the manual-install
+# form; `preset/definition.js` is the same declaration as a JavaScript object
+# for runtime registration by the bundle's Host half.
+#
+# Install paths (see preset/README.md):
+#   A. bundled install: list this file in the bundle package.json
+#      `dsh.bundle.patch` (next to ./cordis.patch.yml) and install the bundle
+#      with plugin_manager install_bundle.
+#   B. runtime registration: the bundle's Host half calls
+#      ctx.agentPresets.register(preset) with preset/definition.js.
+#   Never enable both: duplicate preset ids fail declaration loading.
+#
+# The preset mounts the bundle's `skills/` directory through the filesystem
+# skill provider. It deliberately does NOT name `dsh-routine-stabilization`:
+# the bundle's profile-level Host row (cordis.patch.yml) already provides the
+# routine_* tools and the Settings panel, and a second active Loader entry for
+# the same package is rejected by the client-modules registry (UI half
+# unpublished) and double-registers every routine tool. The skill path resolves
+# from `baseUrl` (the loading patch file) to the installed package's main entry,
+# so the bundle must be installed (profile node_modules), not referenced from
+# an arbitrary workspace path.
+- insert:
+    - id: preset-routine-stabilization
+      name: '@deepseek-ai/dsh-agent-preset'
+      config:
+        id: routine-stabilization
+        name: 'Routine stabilization / 例程稳定化'
+        description: >-
+          Maintain versioned LLM routines end to end: observe recurring
+          requests, propose guard/binding/execution hooks, prove candidates
+          with CI evidence gates (coverage, zero silent errors with a
+          one-sided 95% upper bound, blind challenge), keep candidates in
+          shadow, and leave release and withdrawal to the user.
+        order: 10
+        plugins:
+          - id: persona
+            name: '@deepseek-ai/dsh-persona'
+            config:
+              prefix: >-
+                You are a routine stabilization agent. You observe recurring
+                requests, propose versioned routines, prove them with recorded
+                CI evidence, and keep candidates in shadow until the user
+                releases them. Never release or withdraw a routine yourself.
+                Never answer a routine request from intuition: call the routine
+                tools and cite the recorded result, including denominators.
+                Blind labels are inaccessible; use only the scoring command.
+          - id: agent-instructions
+            name: '@deepseek-ai/dsh-agent-instructions'
+            config:
+              maxBytes: 65536
+          - id: time-context
+            name: '@deepseek-ai/dsh-time-context'
+          - id: tool-bash
+            name: '@deepseek-ai/dsh-tool-bash'
+            disabled: !!js process.platform === 'win32'
+          - id: tool-pwsh
+            name: '@deepseek-ai/dsh-tool-pwsh'
+            disabled: !!js process.platform !== 'win32'
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+            config:
+              applyPatch: false
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
+          - id: tool-jobs
+            name: '@deepseek-ai/dsh-tool-jobs'
+          - id: tool-todo
+            name: '@deepseek-ai/dsh-tool-todo'
+            config:
+              allowParallelInProgress: true
+          - id: tool-ask-user
+            name: '@deepseek-ai/dsh-tool-ask-user'
+          # Mount the bundle's own skills/ directory next to the default skill
+          # roots. Resolution mirrors the shipped `cordis` preset: from the
+          # loading patch's baseUrl through the installed package main.
+          - id: skill-filesystem
+            name: '@deepseek-ai/dsh-skill-filesystem'
+            config:
+              customSkillDirs:
+                - !!js process.getBuiltinModule('node:path').join(process.getBuiltinModule('node:path').dirname(process.getBuiltinModule('node:module').createRequire(baseUrl).resolve('dsh-routine-stabilization')), 'skills')
+          - id: tool-skill
+            name: '@deepseek-ai/dsh-tool-skill'
