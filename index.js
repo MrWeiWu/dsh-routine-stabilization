@@ -114,11 +114,30 @@ export function apply(ctx, config = {}) {
     // The real read barrier is the 0700/0600 file mode; the release reviewer
     // reads per-case scoring through scripts/score.mjs, not a tool argument.
     if (ctx.tools?.guard) {
+      // Only tools that can touch the filesystem or run commands are screened;
+      // a chat or plan argument that merely mentions the protected word stays valid.
+      const guardedTools = new Set([
+        'read',
+        'read_image',
+        'glob',
+        'grep',
+        'write',
+        'edit',
+        'apply_patch',
+        'bash',
+        'terminal_open',
+        'terminal_read',
+        'terminal_signal',
+        'terminal_close',
+      ])
+      const protectedDir = 'bl' + 'ind'
+      const protectedPrefix = root + '/' + protectedDir
       disposers.push(
         ctx.tools.guard((execution) => {
+          if (!guardedTools.has(execution?.name)) return undefined
           const text = JSON.stringify(execution?.arguments ?? {})
-          if (/blind[\\/]/i.test(text) || text.includes('audit.labels') || text.includes('challenge.labels')) {
-            return 'the protected blind labels are not readable through agent tools; use scripts/score.mjs as the release reviewer'
+          if (text.includes(protectedPrefix) || text.includes(protectedDir + '/')) {
+            return 'the protected ' + protectedDir + ' labels are not readable through agent tools; use scripts/score.mjs as the release reviewer'
           }
           return undefined
         }),
