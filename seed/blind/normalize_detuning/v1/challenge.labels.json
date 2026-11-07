@@ -1,0 +1,363 @@
+{
+  "schemaVersion": 2,
+  "set": "challenge",
+  "frozenAt": "2026-11-04T00:00:00Z",
+  "cases": [
+    {
+      "id": "challenge-001",
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-002",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": -2500,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "challenge-003",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_hz",
+          "unit": "Hz",
+          "valueHz": 245.5,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "challenge-004",
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-005",
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-006",
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-007",
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-008",
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-009",
+      "expect": {
+        "decision": "defer",
+        "reason": "unsupported-unit",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-010",
+      "expect": {
+        "decision": "defer",
+        "reason": "metadata-conflict",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-011",
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-012",
+      "expect": {
+        "decision": "defer",
+        "reason": "invalid-value",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-013",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_khz",
+          "unit": "Hz",
+          "valueHz": 0.125,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "challenge-014",
+      "expect": {
+        "decision": "defer",
+        "reason": "metadata-conflict",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-015",
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-016",
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-017",
+      "expect": {
+        "decision": "defer",
+        "reason": "metadata-conflict",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-018",
+      "expect": {
+        "decision": "defer",
+        "reason": "invalid-value",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-019",
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-020",
+      "expect": {
+        "decision": "defer",
+        "reason": "metadata-conflict",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-021",
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-022",
+      "expect": {
+        "decision": "defer",
+        "reason": "invalid-value",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-023",
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-024",
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-025",
+      "expect": {
+        "decision": "defer",
+        "reason": "unsupported-unit",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-026",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_rad",
+          "unit": "Hz",
+          "valueHz": -120,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "challenge-027",
+      "expect": {
+        "decision": "defer",
+        "reason": "invalid-value",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-028",
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-029",
+      "expect": {
+        "decision": "defer",
+        "reason": "metadata-conflict",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-030",
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-031",
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-032",
+      "expect": {
+        "decision": "defer",
+        "reason": "unsupported-unit",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-033",
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-034",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_b",
+          "unit": "Hz",
+          "valueHz": 750,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "challenge-035",
+      "expect": {
+        "decision": "defer",
+        "reason": "unsupported-unit",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-036",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_rad",
+          "unit": "Hz",
+          "valueHz": 300,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "challenge-037",
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-038",
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-039",
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "challenge-040",
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    }
+  ]
+}

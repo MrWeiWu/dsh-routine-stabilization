@@ -38,12 +38,19 @@ export function apply(ctx, config = {}) {
       const report = await engine.evaluateRoutine(root, routine, version, {
         modelSnapshot: options?.modelSnapshot,
         codeRevision: options?.codeRevision,
+        promptVersions: options?.promptVersions,
+        toolVersions: options?.toolVersions,
+        environment: options?.environment,
         notes: options?.notes,
       })
       return {
         routine,
         version: String(version),
         passed: report.passed,
+        eligibility: report.eligibility,
+        auditUse: report.auditUse,
+        blindRun: report.blindRun,
+        dataClass: report.dataClass,
         gates: report.gates,
         metrics: report.metrics,
         evidenceHash: report.evidence?.evidenceHash ?? null,
@@ -57,6 +64,9 @@ export function apply(ctx, config = {}) {
     },
     async propose(proposal) {
       return engine.proposeRoutine(root, proposal)
+    },
+    async preregister(routine, version, preregistration) {
+      return engine.writePreregistration(root, routine, String(version), preregistration, { by: 'agent' })
     },
     async report(routine, version) {
       const report = await store.latestReport(root, routine, String(version))

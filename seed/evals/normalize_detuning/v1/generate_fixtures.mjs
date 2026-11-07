@@ -3,30 +3,42 @@
 // Copyright (C) 2026 The dsh-routine-stabilization authors
 
 /**
- * Deterministic generator for the built-in `normalize_detuning/v1` seed data.
+ * Deterministic generator for the built-in `normalize_detuning/v1` seed data (v2).
  *
  * Outputs (resolved relative to this script, so it works from any cwd and also
  * after the seed tree is copied to a registry root):
- *   seed/fixtures/normalize_detuning/v1/{dev,audit,challenge}.json
- *   seed/arms/{arm-a,arm-b,arm-c}.json
+ *   fixtures/normalize_detuning/v1/dev.json               inline-label dev set (schemaVersion 2)
+ *   fixtures/normalize_detuning/v1/audit.inputs.json      inputs only; labels are blind
+ *   fixtures/normalize_detuning/v1/challenge.inputs.json  inputs only; labels are blind
+ *   blind/normalize_detuning/v1/audit.labels.json         labels only, dir 0700 / file 0600
+ *   blind/normalize_detuning/v1/challenge.labels.json     labels only, dir 0700 / file 0600
+ *   routines/normalize_detuning/v1/preregistration.json   preregistration frozen before scoring
  *
- * The evaluator never imports this file. It exists so that the fixture sets are
- * reproducible byte-for-byte from fixed seeds instead of being hand-edited.
+ * The evaluator never imports this file. It exists so that the frozen data are
+ * reproducible byte-for-byte from fixed seeds instead of being hand-edited. A
+ * rerun must not change the sha256 of any output; the main function prints every
+ * hash so the caller can prove it.
+ *
+ * Legacy v1 artifacts (`fixtures/.../{audit,challenge}.json`, `arms/arm-*.json`
+ * generated demo records) are removed: generated arm records are not evidence.
  *
  * Non-finite values (used by the invalid-value near-misses) are written as the
  * JSON number tokens 1e999 / -1e999, which JSON.parse turns into +/-Infinity.
  */
 
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { chmodSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const SEED_ROOT = path.resolve(SCRIPT_DIR, '../../..');
 const FIXTURE_DIR = path.join(SEED_ROOT, 'fixtures/normalize_detuning/v1');
-const ARM_DIR = path.join(SEED_ROOT, 'arms');
+const BLIND_DIR = path.join(SEED_ROOT, 'blind');
+const BLIND_SET_DIR = path.join(BLIND_DIR, 'normalize_detuning/v1');
+const ROUTINE_DIR = path.join(SEED_ROOT, 'routines/normalize_detuning/v1');
 
-const SCHEMA_VERSION = 1;
+const SCHEMA_VERSION = 2;
 const FROZEN_AT = '2026-11-04T00:00:00Z';
 const TRUSTED = 'trusted-schema';
 const UNVERIFIED = 'unverified';
@@ -117,9 +129,34 @@ function serialize(data) {
   );
 }
 
-function writeJson(filePath, data) {
+function writeJson(filePath, data, mode = 0o644) {
   mkdirSync(path.dirname(filePath), { recursive: true });
   writeFileSync(filePath, serialize(data), 'utf8');
+  chmodSync(filePath, mode);
+}
+
+function sha256File(filePath) {
+  return createHash('sha256').update(readFileSync(filePath)).digest('hex');
+}
+
+// Blind labels and the directories leading to them are private to the release
+// reviewer: 0700 directories, 0600 files. chmod runs on every generation so a
+// checkout with different umask/permissions is repaired, not just created.
+const BLIND_DIRECTORIES = [BLIND_DIR, path.dirname(BLIND_SET_DIR), BLIND_SET_DIR];
+
+function writeBlindLabels(filePath, data) {
+  for (const directory of BLIND_DIRECTORIES) mkdirSync(directory, { recursive: true, mode: 0o700 });
+  writeJson(filePath, data, 0o600);
+  for (const directory of BLIND_DIRECTORIES) chmodSync(directory, 0o700);
+}
+
+function removeIfPresent(filePath) {
+  try {
+    rmSync(filePath, { force: true });
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -1095,112 +1132,146 @@ function buildChallenge() {
 }
 
 // ---------------------------------------------------------------------------
-// arms: paired three-arm pilot comparison over the 100 audit case ids.
-// A = slow + expensive baseline, B = medium heuristic pipeline, C = target routine.
-// C resolves every expected-accept case correctly and defers every expected-defer
-// case to the user, so it has coverage 78% and zero silent errors.
+// v2 split: inputs-only fixture sets, blind labels, preregistration.
+//
+// The candidate agent may read `fixtures/**`; it must never read `blind/**`.
+// Labels are produced by projecting the frozen expectations, and both files are
+// written with private modes so a copied seed tree keeps the same protection.
 // ---------------------------------------------------------------------------
 
-const ARM_CONFIG = {
-  A: {
-    label: 'A: unversioned manual review (slow, expensive)',
-    setupCostUsd: 1500,
-    maintenanceCostUsd: 900,
-    acceptResolved: 68,
-    wrongDeferResolved: 4,
-    cost: (resolved, index) =>
-      resolved ? round(1.05 + (index % 5) * 0.09, 4) : round(0.3, 4),
-    latency: (resolved, index) => (resolved ? 1600 : 1300) + (index % 7) * 170,
-  },
-  B: {
-    label: 'B: medium heuristic pipeline',
-    setupCostUsd: 600,
-    maintenanceCostUsd: 350,
-    acceptResolved: 74,
-    wrongDeferResolved: 3,
-    cost: (resolved, index) =>
-      resolved ? round(0.62 + (index % 4) * 0.05, 4) : round(0.2, 4),
-    latency: (resolved, index) => (resolved ? 850 : 700) + (index % 6) * 90,
-  },
-  C: {
-    label: 'C: versioned normalize_detuning/v1 with guard + reference check',
-    setupCostUsd: 300,
-    maintenanceCostUsd: 120,
-    acceptResolved: 78,
-    wrongDeferResolved: 0,
-    cost: (resolved, index) =>
-      resolved ? round(0.33 + (index % 3) * 0.03, 4) : round(0.12, 4),
-    latency: (resolved, index) => (resolved ? 380 : 320) + (index % 5) * 45,
-  },
-};
+const LEGACY_ARM_LABELS = ['a', 'b', 'c'];
 
-function buildArm(auditCases, arm) {
-  const config = ARM_CONFIG[arm];
-  const acceptIds = auditCases
-    .filter((fixtureCase) => fixtureCase.expect.decision === 'accept')
-    .map((fixtureCase) => fixtureCase.id);
-  const deferIds = auditCases
-    .filter((fixtureCase) => fixtureCase.expect.decision === 'defer')
-    .map((fixtureCase) => fixtureCase.id);
-
-  const resolvedAccept = new Set(acceptIds.slice(0, config.acceptResolved));
-  const wrongDefer = new Set(deferIds.slice(0, config.wrongDeferResolved));
-
-  const cases = auditCases.map((fixtureCase, index) => {
-    const expectsAccept = fixtureCase.expect.decision === 'accept';
-    let resolved;
-    let correct;
-    if (expectsAccept) {
-      resolved = resolvedAccept.has(fixtureCase.id);
-      correct = resolved;
-    } else if (wrongDefer.has(fixtureCase.id)) {
-      resolved = true;
-      correct = false;
-    } else {
-      resolved = false;
-      correct = true;
-    }
-    return {
-      caseId: fixtureCase.id,
-      resolved,
-      correct,
-      costUsd: config.cost(resolved, index),
-      latencyMs: config.latency(resolved, index),
-    };
-  });
-
+function buildInputs(setName, cases) {
   return {
     schemaVersion: SCHEMA_VERSION,
-    runId: 'example',
-    arm,
-    label: config.label,
-    workload: { requests: 100, horizonDays: 30 },
-    setupCostUsd: config.setupCostUsd,
-    maintenanceCostUsd: config.maintenanceCostUsd,
-    cases,
+    set: setName,
+    provenance: 'synthetic',
+    frozenAt: FROZEN_AT,
+    cases: cases.map((fixtureCase) => ({
+      id: fixtureCase.id,
+      description: fixtureCase.description,
+      input: fixtureCase.input,
+    })),
   };
 }
 
-// ---------------------------------------------------------------------------
-// main
-// ---------------------------------------------------------------------------
-
-const dev = { schemaVersion: SCHEMA_VERSION, set: 'dev', provenance: 'synthetic', frozenAt: FROZEN_AT, cases: buildDev() };
-const audit = { schemaVersion: SCHEMA_VERSION, set: 'audit', provenance: 'synthetic', frozenAt: FROZEN_AT, cases: buildAudit() };
-const challenge = { schemaVersion: SCHEMA_VERSION, set: 'challenge', provenance: 'synthetic', frozenAt: FROZEN_AT, cases: buildChallenge() };
-
-writeJson(path.join(FIXTURE_DIR, 'dev.json'), dev);
-writeJson(path.join(FIXTURE_DIR, 'audit.json'), audit);
-writeJson(path.join(FIXTURE_DIR, 'challenge.json'), challenge);
-
-for (const arm of ['A', 'B', 'C']) {
-  writeJson(path.join(ARM_DIR, `arm-${arm.toLowerCase()}.json`), buildArm(audit.cases, arm));
+function buildLabels(setName, cases) {
+  return {
+    schemaVersion: SCHEMA_VERSION,
+    set: setName,
+    frozenAt: FROZEN_AT,
+    cases: cases.map((fixtureCase) => ({
+      id: fixtureCase.id,
+      expect: fixtureCase.expect,
+    })),
+  };
 }
 
-const auditAccept = audit.cases.filter((c) => c.expect.decision === 'accept').length;
-const challengeDefer = challenge.cases.filter((c) => c.expect.decision === 'defer').length;
+function buildPreregistration() {
+  return {
+    schemaVersion: 1,
+    routine: 'normalize_detuning',
+    version: '1',
+    frozenAt: FROZEN_AT,
+    population: 'read-only detuning normalization requests on spectroscopy tables',
+    samplingUnit: 'one request',
+    exclusions:
+      'requests without declared field identity or unit metadata, inputs outside the Hz/kHz/rad/s unit enum, and non-finite values (the contract defers them instead of converting them)',
+    thresholds: {
+      coverageFloor: 0.6,
+      silentErrorCeiling: 0.05,
+      challengeSize: 40,
+      challengeIncorrectAutomatic: 0,
+    },
+    workload: { requests: 100, horizonDays: 30, perRequestBudgetMs: 60000 },
+    decisionDate: '2026-11-30',
+    nextReviewTrigger: 'model, schema or dependency change; any production fallback; 90 days',
+    realDataAttested: false,
+    reviewers: [
+      {
+        name: 'contract-author',
+        role: 'author',
+        signedAt: FROZEN_AT,
+        independent: false,
+        sawLabels: false,
+      },
+    ],
+  };
+}
 
-console.log(`wrote dev: ${dev.cases.length} cases`);
-console.log(`wrote audit: ${audit.cases.length} cases (${auditAccept} accept / ${audit.cases.length - auditAccept} defer)`);
-console.log(`wrote challenge: ${challenge.cases.length} cases (${challengeDefer} defer / ${challenge.cases.length - challengeDefer} accept)`);
-console.log(`wrote arms: ${['A', 'B', 'C'].join(', ')} (100 paired cases each)`);
+function removeLegacyArtifacts() {
+  const removed = [];
+  for (const file of ['audit.json', 'challenge.json']) {
+    const absolute = path.join(FIXTURE_DIR, file);
+    if (removeIfPresent(absolute)) removed.push(absolute);
+  }
+  for (const arm of LEGACY_ARM_LABELS) {
+    const absolute = path.join(SEED_ROOT, 'arms', `arm-${arm}.json`);
+    if (removeIfPresent(absolute)) removed.push(absolute);
+  }
+  try {
+    // Keep `arms/` when it still holds user-provided measured arm records.
+    rmSync(path.join(SEED_ROOT, 'arms'), { recursive: false });
+  } catch {
+    // non-empty or already absent: nothing to clean up
+  }
+  return removed;
+}
+
+function main() {
+  const removed = removeLegacyArtifacts();
+
+  const dev = {
+    schemaVersion: SCHEMA_VERSION,
+    set: 'dev',
+    provenance: 'synthetic',
+    frozenAt: FROZEN_AT,
+    cases: buildDev(),
+  };
+  const auditCases = buildAudit();
+  const challengeCases = buildChallenge();
+
+  const publicOutputs = [
+    [path.join(FIXTURE_DIR, 'dev.json'), dev],
+    [path.join(FIXTURE_DIR, 'audit.inputs.json'), buildInputs('audit', auditCases)],
+    [path.join(FIXTURE_DIR, 'challenge.inputs.json'), buildInputs('challenge', challengeCases)],
+    [path.join(ROUTINE_DIR, 'preregistration.json'), buildPreregistration()],
+  ];
+  for (const [file, data] of publicOutputs) writeJson(file, data, 0o644);
+
+  const blindOutputs = [
+    [path.join(BLIND_SET_DIR, 'audit.labels.json'), buildLabels('audit', auditCases)],
+    [path.join(BLIND_SET_DIR, 'challenge.labels.json'), buildLabels('challenge', challengeCases)],
+  ];
+  for (const [file, data] of blindOutputs) writeBlindLabels(file, data);
+
+  const auditAccept = auditCases.filter((fixtureCase) => fixtureCase.expect.decision === 'accept').length;
+  const challengeDefer = challengeCases.filter((fixtureCase) => fixtureCase.expect.decision === 'defer').length;
+  const devAccept = dev.cases.filter((fixtureCase) => fixtureCase.expect.decision === 'accept').length;
+
+  console.log('generated normalize_detuning/v1 seed data (v2, deterministic)');
+  console.log(
+    `  dev: ${dev.cases.length} cases (${devAccept} accept / ${dev.cases.length - devAccept} defer; labels inline)`,
+  );
+  console.log(
+    `  audit: ${auditCases.length} inputs (${auditAccept} accept / ${auditCases.length - auditAccept} defer) + blind labels`,
+  );
+  console.log(
+    `  challenge: ${challengeCases.length} inputs (${challengeDefer} defer / ${challengeCases.length - challengeDefer} accept) + blind labels`,
+  );
+  console.log(
+    '  preregistration: author-only reviewer, realDataAttested=false (release intentionally ineligible)',
+  );
+  if (removed.length > 0) {
+    console.log(
+      `  removed legacy artifacts: ${removed.map((file) => path.relative(SEED_ROOT, file)).join(', ')}`,
+    );
+  }
+  console.log('  sha256:');
+  for (const [file] of [...publicOutputs, ...blindOutputs]) {
+    console.log(`    ${sha256File(file)}  ${path.relative(SEED_ROOT, file)}`);
+  }
+}
+
+main();
+

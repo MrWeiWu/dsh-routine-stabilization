@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "routine": "normalize_detuning",
+  "version": "1",
+  "frozenAt": "2026-11-04T00:00:00Z",
+  "population": "read-only detuning normalization requests on spectroscopy tables",
+  "samplingUnit": "one request",
+  "exclusions": "requests without declared field identity or unit metadata, inputs outside the Hz/kHz/rad/s unit enum, and non-finite values (the contract defers them instead of converting them)",
+  "thresholds": {
+    "coverageFloor": 0.6,
+    "silentErrorCeiling": 0.05,
+    "challengeSize": 40,
+    "challengeIncorrectAutomatic": 0
+  },
+  "workload": {
+    "requests": 100,
+    "horizonDays": 30,
+    "perRequestBudgetMs": 60000
+  },
+  "decisionDate": "2026-11-30",
+  "nextReviewTrigger": "model, schema or dependency change; any production fallback; 90 days",
+  "realDataAttested": false,
+  "reviewers": [
+    {
+      "name": "contract-author",
+      "role": "author",
+      "signedAt": "2026-11-04T00:00:00Z",
+      "independent": false,
+      "sawLabels": false
+    }
+  ]
+}

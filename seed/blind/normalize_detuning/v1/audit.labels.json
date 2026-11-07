@@ -1,0 +1,1275 @@
+{
+  "schemaVersion": 2,
+  "set": "audit",
+  "frozenAt": "2026-11-04T00:00:00Z",
+  "cases": [
+    {
+      "id": "audit-001",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": -248.85788553988746,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-002",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": -350.08453697625913,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-003",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": -4810.549,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-004",
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-005",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "trap_detuning",
+          "unit": "Hz",
+          "valueHz": 850.11,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-006",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": -403.97197375344774,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-007",
+      "expect": {
+        "decision": "defer",
+        "reason": "invalid-value",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-008",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "offset_detuning",
+          "unit": "Hz",
+          "valueHz": 2716.233,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-009",
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-010",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": -325.776,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-011",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": 59.36255223505845,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-012",
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-013",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "carrier_detuning",
+          "unit": "Hz",
+          "valueHz": -184.3240891967056,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-014",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "trap_detuning",
+          "unit": "Hz",
+          "valueHz": 2629.161,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-015",
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-016",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "trap_detuning",
+          "unit": "Hz",
+          "valueHz": -1043.476,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-017",
+      "expect": {
+        "decision": "defer",
+        "reason": "metadata-conflict",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-018",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": 4362.415,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-019",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": -1491.927,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-020",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 110.376,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-021",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "aom_detuning",
+          "unit": "Hz",
+          "valueHz": 423.18455703697134,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-022",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": -437.48299940462573,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-023",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "trap_detuning",
+          "unit": "Hz",
+          "valueHz": 53.663000000000004,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-024",
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-025",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": 197.1062932975824,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-026",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": -123.99517026973024,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-027",
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-028",
+      "expect": {
+        "decision": "defer",
+        "reason": "metadata-conflict",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-029",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": 1736.915,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-030",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "aom_detuning",
+          "unit": "Hz",
+          "valueHz": 1425.8919999999998,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-031",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "trap_detuning",
+          "unit": "Hz",
+          "valueHz": -3876.41,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-032",
+      "expect": {
+        "decision": "defer",
+        "reason": "invalid-value",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-033",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": -225.63902840490874,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-034",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 12.023,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-035",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": -1477.501,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-036",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "aom_detuning",
+          "unit": "Hz",
+          "valueHz": 3091.914,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-037",
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-038",
+      "expect": {
+        "decision": "defer",
+        "reason": "invalid-value",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-039",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": -4673.192,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-040",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": 392.8240563237385,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-041",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": -369.7203142083938,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-042",
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-043",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": -3323.8759999999997,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-044",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": 1049.295,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-045",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "carrier_detuning",
+          "unit": "Hz",
+          "valueHz": 269.11751322499555,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-046",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": 956.577,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-047",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "aom_detuning",
+          "unit": "Hz",
+          "valueHz": 1614.734,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-048",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 86.38451143240913,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-049",
+      "expect": {
+        "decision": "defer",
+        "reason": "competing-fields",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-050",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": 156.86084634075715,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-051",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": 4382.328,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-052",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "carrier_detuning",
+          "unit": "Hz",
+          "valueHz": 2384.854,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-053",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": -459.45646401695217,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-054",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": 577.335,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-055",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 452.63387644325496,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-056",
+      "expect": {
+        "decision": "defer",
+        "reason": "unsupported-unit",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-057",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 3814.645,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-058",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "offset_detuning",
+          "unit": "Hz",
+          "valueHz": 3926.6,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-059",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": -2527.5370000000003,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-060",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "carrier_detuning",
+          "unit": "Hz",
+          "valueHz": -927.334,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-061",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "carrier_detuning",
+          "unit": "Hz",
+          "valueHz": -2836.401,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-062",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "aom_detuning",
+          "unit": "Hz",
+          "valueHz": 3740.857,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-063",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": -5.065,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-064",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 261.6150238513119,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-065",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "offset_detuning",
+          "unit": "Hz",
+          "valueHz": 4390.902999999999,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-066",
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-067",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "aom_detuning",
+          "unit": "Hz",
+          "valueHz": 2288.062,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-068",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 2619.5080000000003,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-069",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "offset_detuning",
+          "unit": "Hz",
+          "valueHz": 2228.982,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-070",
+      "expect": {
+        "decision": "defer",
+        "reason": "metadata-conflict",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-071",
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-072",
+      "expect": {
+        "decision": "defer",
+        "reason": "metadata-conflict",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-073",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": 965.9069999999999,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-074",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "trap_detuning",
+          "unit": "Hz",
+          "valueHz": 29.115770752608682,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-075",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "trap_detuning",
+          "unit": "Hz",
+          "valueHz": -1654.338,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-076",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": -1308.971,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-077",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": -224.31010356952967,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-078",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": 2345.395,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-079",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 70.95743801962277,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-080",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 2837.561,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-081",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": -3599.8039999999996,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-082",
+      "expect": {
+        "decision": "defer",
+        "reason": "unsupported-unit",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-083",
+      "expect": {
+        "decision": "defer",
+        "reason": "unsupported-unit",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-084",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": 13.060557024512805,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-085",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "offset_detuning",
+          "unit": "Hz",
+          "valueHz": -327.34823969774936,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-086",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": -121.9376266245941,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-087",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": -3005.672,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-088",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "detuning_freq",
+          "unit": "Hz",
+          "valueHz": -2731.257,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-089",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": 2132.336,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-090",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": -2742.005,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-091",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "probe_detuning",
+          "unit": "Hz",
+          "valueHz": -117.18065121502805,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-092",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": -166.86401017044417,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-093",
+      "expect": {
+        "decision": "defer",
+        "reason": "missing-metadata",
+        "checks": null
+      }
+    },
+    {
+      "id": "audit-094",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "aom_detuning",
+          "unit": "Hz",
+          "valueHz": -4675.842,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-095",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "offset_detuning",
+          "unit": "Hz",
+          "valueHz": 5.413,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-096",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": 445.446,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-097",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "offset_detuning",
+          "unit": "Hz",
+          "valueHz": 153.9986625723665,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-098",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "laser_detuning",
+          "unit": "Hz",
+          "valueHz": 3362.853,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-099",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": -2300.922,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    },
+    {
+      "id": "audit-100",
+      "expect": {
+        "decision": "accept",
+        "reason": null,
+        "checks": {
+          "fieldId": "spectroscopy_detuning",
+          "unit": "Hz",
+          "valueHz": 1718.008,
+          "absToleranceHz": 1e-9,
+          "relTolerance": 1e-12
+        }
+      }
+    }
+  ]
+}

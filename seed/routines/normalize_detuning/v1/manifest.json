@@ -4,7 +4,7 @@
   "version": "1",
   "title": "Normalize detuning to Hz",
   "summary": "Admit an explicitly declared detuning value, preserve its field identity and sign, and normalize Hz / kHz / rad/s to Hz. Ambiguous field bindings and conflicting unit declarations are deferred to the user instead of guessed.",
-  "owner": "routine-stabilization@local",
+  "owner": "dsh-routine-stabilization authors",
   "contractRevision": "normalize_detuning/v1",
   "allowedEffects": [
     "read-only"
@@ -124,17 +124,17 @@
       "additionalProperties": false,
       "required": [
         "fieldId",
+        "unit",
         "sourceUnit",
-        "valueHz"
-      ],
-      "requiredFields": [
-        "fieldId",
-        "sourceUnit",
-        "valueHz"
+        "valueHz",
+        "contractRevision"
       ],
       "properties": {
         "fieldId": {
           "type": "string"
+        },
+        "unit": {
+          "const": "Hz"
         },
         "sourceUnit": {
           "enum": [
@@ -145,6 +145,9 @@
         },
         "valueHz": {
           "type": "number"
+        },
+        "contractRevision": {
+          "const": "normalize_detuning/v1"
         }
       }
     }
@@ -176,14 +179,42 @@
     "description": "If admission defers, a postcondition fails, or execution is unavailable, the combined value is discarded and the user is asked to confirm the field binding and underlying unit. The runtime never falls back to a silent numeric guess."
   },
   "evidence": {
-    "derivationTraces": [],
     "fixtureSets": {
       "dev": "fixtures/normalize_detuning/v1/dev.json",
-      "audit": "fixtures/normalize_detuning/v1/audit.json",
-      "challenge": "fixtures/normalize_detuning/v1/challenge.json"
+      "audit": "fixtures/normalize_detuning/v1/audit.inputs.json",
+      "challenge": "fixtures/normalize_detuning/v1/challenge.inputs.json"
     },
-    "evaluator": "evals/normalize_detuning/v1/reference_check.mjs",
+    "blindLabels": {
+      "audit": "blind/normalize_detuning/v1/audit.labels.json",
+      "challenge": "blind/normalize_detuning/v1/challenge.labels.json"
+    },
+    "dataClass": "synthetic",
     "provenance": "synthetic",
+    "realDeploymentData": false,
+    "derivationTraces": [
+      {
+        "kind": "design-note",
+        "ref": "docs/framework.md §3 Promotion gates",
+        "recordedAt": "2026-11-04T00:00:00Z"
+      },
+      {
+        "kind": "design-note",
+        "ref": "docs/framework.md §4 Blind data discipline",
+        "recordedAt": "2026-11-04T00:00:00Z"
+      },
+      {
+        "kind": "design-note",
+        "ref": "docs/framework.md §5 Paired comparison and the pilot decision",
+        "recordedAt": "2026-11-04T00:00:00Z"
+      },
+      {
+        "kind": "design-note",
+        "ref": "docs/framework.md §6 Reproducibility",
+        "recordedAt": "2026-11-04T00:00:00Z"
+      }
+    ],
+    "evaluator": "evals/normalize_detuning/v1/reference_check.mjs",
+    "preregistration": "preregistration.json",
     "approvedRelease": null,
     "withdrawalTrigger": "Withdraw the released version on any postcondition failure, any challenge-set case that is auto-accepted with a wrong answer, or any silent error on the audit set; fall back to ask-user until a new version passes the reference check."
   }

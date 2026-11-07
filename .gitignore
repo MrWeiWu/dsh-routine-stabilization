@@ -1,1 +1,16 @@
+# OS metadata
 .DS_Store
+
+# Dependencies (the plugin has none; keep installs out of the tree)
+node_modules/
+
+# Runtime artifacts of a registry root created inside this checkout.
+# The shipped example data under seed/, including the synthetic blind labels
+# in seed/blind/, is intentionally committed and must not be ignored.
+/registry/
+/reports/
+/logs/
+/blind/runs/
+/arms/*/
+/pilot/runs/
+*.log
