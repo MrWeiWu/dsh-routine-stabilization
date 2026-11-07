@@ -118,3 +118,47 @@ node pilot/run.mjs --root "$DSH_HOME/routine-registry" --run-id pilot-metered-1 
 The shipped arm records were produced by exactly this pipeline; the local run
 also wrote (not committed) the public comparison report and the protected
 per-case scoring detail under `blind/runs/`.
+
+
+## Per-request arm A latency (v0.4)
+
+The batch arm-A sessions only support attempt-level percentiles. For a
+per-request sample, one fresh agent was spawned per sampled request (20 audit
+cases × 3 repeats = 60 child sessions), each metered from its durable session
+log (`pilot/meter-percase.mjs`, marker `PERCASE:<caseId>:<repeat>`):
+
+| Measure | Value |
+| --- | --- |
+| samples / cases / repeats | 60 / 20 / 3 |
+| decisions | 42 accept, 18 defer |
+| correctness vs protected audit labels | **60/60 correct, 0 silent errors** |
+| latency | p50 **3,611 ms**, p95 **7,033 ms**, mean 4,246 ms (min 2,487 / max 9,051) |
+| token cost | total **$0.112**, mean **$0.00187** per request (declared model prices) |
+| basis | `per-request-sampled`; full-run cost still from the batch metering |
+
+The sample file is `pilot/evidence/pilot-metered-1/latency-sample-a.json`; the
+arm A records carry its hash in `participant.latencySampleHash`. This is a
+declared 20-case sample, not a full-census per-request measurement.
+
+## Fresh evidence cycle v2 (trace-derived)
+
+v1's blind labels were consumed, so v2 was created as a **new candidate** with a
+**fresh** audit/challenge set and observed-request derivation traces:
+
+- candidate: `normalize_detuning/v2`, `routineProvenance: trace-derived`,
+  6 observation-ledger traces (`obs-…`) from real runtime probes;
+- fresh labels: deterministic generator seed `20261110`; audit 100 (75 accept),
+  challenge 40 (34 defer); generator re-derives every expectation with an
+  independent reference;
+- preregistration: frozen `2026-11-07T23:45:00Z`, decision date `2026-12-15`,
+  author-only reviewer (release remains ineligible);
+- evaluation (clean commit `9aa30a5`, engine 0.4.0): **all gates pass** —
+  coverage 75/100, silent 0/75 (one-sided upper bound 3.916 %), challenge 0/40,
+  v2 independent reference check exit 0 (`V2 REFERENCE CHECK PASSED (audit 100,
+  challenge 40, accept 75, observed traces 6)`), audit `priorUses=0/fresh=true`;
+- release blockers remain: `synthetic-data`, `real-data-not-attested`,
+  `independent-reviewer-missing`.
+
+The cross-reset ledger shows the v1 and earlier v2 label sets were already
+consumed; only the latest fresh set gated this report, and it is recorded as its
+first use.
