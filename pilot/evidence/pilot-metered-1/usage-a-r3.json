@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "kind": "session-usage",
+  "sessionId": "d5dae282-2005-47d5-a03c-7186b543752b",
+  "parentSession": "session-f2f4bcc1-ccfa-47e3-ac3c-b477a007dd5c",
+  "origin": "subagent",
+  "agentPreset": "cordis",
+  "model": {
+    "provider": "deepseek-account",
+    "model": "deepseek-flash",
+    "reasoningEffort": "high",
+    "maxTokens": 256000
+  },
+  "source": "durable session log (provider-reported usage, same fields as the DSH token-meter tokenUsage projection)",
+  "attempts": 7,
+  "tokens": {
+    "inputTokens": 20807,
+    "outputTokens": 5168,
+    "cacheReadTokens": 175616,
+    "cacheWriteTokens": 0,
+    "totalTokens": 201591
+  },
+  "timing": {
+    "startedAt": 1794085537633,
+    "endedAt": 1794085580585,
+    "wallClockMs": 42952
+  }
+}

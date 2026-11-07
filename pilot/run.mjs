@@ -19,13 +19,15 @@
  *   - Both scripted arms run `--repeats` times (default 3) over the same inputs
  *     and write `arms/<runId>/arm-{b,c}-r<repeat>.json` under the registry root.
  *   - Optional `--arm-a <dir>`: validates measured arm-A records
- *     (`arm-a-r1.json`, `arm-a-run-1.json`, ...) and copies them verbatim to
- *     `arms/<runId>/arm-a-r<repeat>.json`. No re-scoring, no label reads.
+ *     (`arm-a-r1.json`, `arm-a-run-1.json`, ...). With `--arm-a-usage` it
+ *     attaches the token-meter-derived session usage and the declared cost
+ *     model; without it the arm stays unmetered. No re-scoring, no label reads.
  *
  * The written records follow spec v2 §5: raw decisions/values only — no
  * `correct`, no `expected`. Latency is measured with process.hrtime.bigint().
  */
 
+import { createHash } from 'node:crypto'
 import fsp from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
@@ -46,6 +48,8 @@ const ARM_A_FILE_PATTERN = /^arm-a-(?:r|run)(?:-)?(\d+)\.json$/i
 const PILOT_DIR = path.dirname(fileURLToPath(import.meta.url))
 const REPO_ROOT = path.resolve(PILOT_DIR, '..')
 const ENGINE_PATH = path.join(REPO_ROOT, 'lib', 'engine.js')
+const DEFAULT_COST_MODEL = path.join(PILOT_DIR, 'cost-model.json')
+const ARM_A_PROMPT = path.join(PILOT_DIR, 'arm-a-prompt.md')
 
 function usage() {
   return [
@@ -58,6 +62,10 @@ function usage() {
     '  --repeats <n>      repeats per scripted arm, 1..10 (default: 3)',
     '  --arm-a <dir>      directory containing measured arm-A records',
     '                     (arm-a-r1.json or arm-a-run-1.json, ...)',
+    '  --arm-a-usage <dir> session-usage files from pilot/meter-session.mjs',
+    '                     (usage-a-r1.json, ...) attached to arm A',
+    '  --cost-model <file> declared prices/labor assumptions',
+    `                     (default: pilot/cost-model.json)`,
     '  --help             show this help',
     '',
     'Writes: <root>/arms/<runId>/arm-{a,b,c}-r<repeat>.json',
@@ -88,6 +96,8 @@ function parseArgs(argv) {
     version: DEFAULT_VERSION,
     repeats: 3,
     armA: null,
+    armAUsage: null,
+    costModel: DEFAULT_COST_MODEL,
     help: false,
   }
   for (let index = 0; index < argv.length; index += 1) {
@@ -124,6 +134,12 @@ function parseArgs(argv) {
       }
       case '--arm-a':
         options.armA = takeValue('--arm-a')
+        break
+      case '--arm-a-usage':
+        options.armAUsage = takeValue('--arm-a-usage')
+        break
+      case '--cost-model':
+        options.costModel = takeValue('--cost-model')
         break
       case '--help':
       case '-h':
@@ -241,6 +257,10 @@ function finalOutcomeOf(decision) {
   return 'fallback-unresolved'
 }
 
+function metricsMean(total, count) {
+  return Number.isFinite(total) && count > 0 ? total / count : null
+}
+
 function armCase(entry) {
   return {
     caseId: entry.caseId,
@@ -286,17 +306,109 @@ const PARTICIPANT_C = Object.freeze({
   promptVersion: null,
 })
 
-function scriptCost() {
+function usd(value) {
+  return Math.round(value * 1e6) / 1e6
+}
+
+function laborUsd(costModel, hours) {
+  return usd(hours * costModel.laborRateUsdPerHour)
+}
+
+function componentsUsd(costModel, componentsHours = {}) {
+  return Object.fromEntries(
+    Object.entries(componentsHours).map(([name, hours]) => [name, laborUsd(costModel, Number(hours) || 0)]),
+  )
+}
+
+function scriptCost(costModel, arm) {
+  const spec = costModel.arms[arm]
   return {
     basis: 'local-script',
     perRequestUsd: 0,
-    setupUsd: 0,
-    maintenanceUsd: 0,
-    authoringHours: null,
+    setupUsd: laborUsd(costModel, spec.setupHours),
+    maintenanceUsd: laborUsd(costModel, spec.maintenanceHours),
+    authoringHours: spec.setupHours,
+    laborRateUsdPerHour: costModel.laborRateUsdPerHour,
+    laborBasis: 'declared',
+    components: componentsUsd(costModel, spec.componentsHours),
+    tokens: null,
+    modelPrices: null,
+    priceBasis: null,
+    notes: spec.notes ?? null,
   }
 }
 
-async function runArmB({ cases, repeat, runId, workload, conditions }) {
+function modelPriceFor(costModel, usage) {
+  const key = `${usage.model.provider}/${usage.model.model}`
+  const prices = costModel.modelPrices[key]
+  if (!prices) {
+    throw new Error(`no model price for ${key} in ${DEFAULT_COST_MODEL}; add it to the cost model`)
+  }
+  return { key, ...prices }
+}
+
+function tokenCost(usage, prices) {
+  const input = (usage.tokens.inputTokens / 1e6) * prices.inputPerMTokensUsd
+  const cached = (usage.tokens.cacheReadTokens / 1e6) * prices.cachedInputPerMTokensUsd
+  const output = (usage.tokens.outputTokens / 1e6) * prices.outputPerMTokensUsd
+  return usd(input + cached + output)
+}
+
+function armACost({ costModel, usage, requests }) {
+  const spec = costModel.arms.A
+  const prices = modelPriceFor(costModel, usage)
+  const tokenUsd = tokenCost(usage, prices)
+  const reviewHours = (Number(spec.perRequestReviewMinutes) / 60) * requests
+  const reviewUsd = laborUsd(costModel, reviewHours)
+  const setupUsd = laborUsd(costModel, spec.setupHours)
+  const maintenanceUsd = laborUsd(costModel, spec.maintenanceHours)
+  return {
+    basis: 'metered-token',
+    perRequestUsd: usd((tokenUsd + reviewUsd) / requests),
+    setupUsd,
+    maintenanceUsd,
+    authoringHours: spec.setupHours,
+    laborRateUsdPerHour: costModel.laborRateUsdPerHour,
+    laborBasis: 'declared',
+    tokens: usage.tokens,
+    modelPrices: {
+      inputPerMTokensUsd: prices.inputPerMTokensUsd,
+      cachedInputPerMTokensUsd: prices.cachedInputPerMTokensUsd,
+      outputPerMTokensUsd: prices.outputPerMTokensUsd,
+      modelKey: prices.key,
+      basis: prices.basis,
+    },
+    tokenCostUsd: tokenUsd,
+    reviewCostUsd: reviewUsd,
+    totalUsd: usd(tokenUsd + reviewUsd + setupUsd + maintenanceUsd),
+    components: {
+      ...componentsUsd(costModel, spec.componentsHours),
+      humanReview: reviewUsd,
+    },
+    priceBasis: prices.basis,
+    notes: spec.notes ?? null,
+  }
+}
+
+async function loadCostModel(file) {
+  const costModel = await readJson(file)
+  if (costModel.schemaVersion !== 1) throw new Error(`${file}: cost model schemaVersion must be 1`)
+  if (!Number.isFinite(costModel.laborRateUsdPerHour)) throw new Error(`${file}: laborRateUsdPerHour must be a number`)
+  for (const arm of ['A', 'B', 'C']) {
+    const spec = costModel.arms?.[arm]
+    if (!spec) throw new Error(`${file}: arms.${arm} is required`)
+    for (const key of ['setupHours', 'maintenanceHours', 'perRequestReviewMinutes']) {
+      if (!Number.isFinite(spec[key])) throw new Error(`${file}: arms.${arm}.${key} must be a number`)
+    }
+  }
+  return costModel
+}
+
+async function sha256File(file) {
+  return createHash('sha256').update(await fsp.readFile(file)).digest('hex')
+}
+
+async function runArmB({ cases, repeat, runId, workload, conditions, costModel }) {
   const results = []
   for (const fixtureCase of cases) {
     const startedAt = process.hrtime.bigint()
@@ -336,13 +448,13 @@ async function runArmB({ cases, repeat, runId, workload, conditions }) {
     repeat,
     participant: PARTICIPANT_B,
     conditions,
-    cost: scriptCost(),
+    cost: scriptCost(costModel, 'B'),
     workload,
     cases: results,
   })
 }
 
-async function runArmC({ engine, root, routine, version, cases, repeat, runId, workload, conditions }) {
+async function runArmC({ engine, root, routine, version, cases, repeat, runId, workload, conditions, costModel }) {
   const results = []
   for (const fixtureCase of cases) {
     const startedAt = process.hrtime.bigint()
@@ -386,7 +498,7 @@ async function runArmC({ engine, root, routine, version, cases, repeat, runId, w
     repeat,
     participant: PARTICIPANT_C,
     conditions,
-    cost: scriptCost(),
+    cost: scriptCost(costModel, 'C'),
     workload,
     cases: results,
   })
@@ -451,7 +563,7 @@ function normalizeArmARecord(record) {
   }
 }
 
-async function ingestArmA({ directory, outDir, runId, caseIds, repeats }) {
+async function ingestArmA({ directory, outDir, runId, caseIds, repeats, usageDirectory, costModel, promptHash, workload }) {
   const absolute = path.resolve(directory)
   let names
   try {
@@ -482,13 +594,76 @@ async function ingestArmA({ directory, outDir, runId, caseIds, repeats }) {
     }
     seenRepeats.add(item.repeat)
   }
+  const usageByRepeat = new Map()
+  if (usageDirectory !== null) {
+    const usageDirectoryAbsolute = path.resolve(usageDirectory)
+    let usageNames = []
+    try {
+      usageNames = await fsp.readdir(usageDirectoryAbsolute)
+    } catch {
+      throw new Error(`--arm-a-usage directory is not readable: ${usageDirectoryAbsolute}`)
+    }
+    for (const name of usageNames) {
+      const match = /^usage-a-r(\d+)\.json$/i.exec(name)
+      if (!match) continue
+      const repeat = Number(match[1])
+      const usage = await readJson(path.join(usageDirectoryAbsolute, name))
+      if (usage.kind !== 'session-usage') throw new Error(`${name}: usage kind must be "session-usage"`)
+      if (!isRecord(usage.tokens) || !isRecord(usage.timing)) throw new Error(`${name}: usage needs tokens and timing`)
+      usageByRepeat.set(repeat, usage)
+    }
+  }
   for (const item of found) {
-    const target = path.join(outDir, `arm-a-r${item.repeat}.json`)
-    await fsp.writeFile(
-      target,
-      `${JSON.stringify(normalizeArmARecord(item.record), null, 2)}\n`,
-      'utf8',
-    )
+    const normalized = normalizeArmARecord(item.record)
+    const usage = usageByRepeat.get(item.repeat) ?? null
+    const record = { ...normalized, runId }
+    if (usage !== null) {
+      const requests = workload.requests
+      record.participant = {
+        ...record.participant,
+        modelSnapshot: `${usage.model.provider}/${usage.model.model} (DeepSeek-V4.1-Flash)`,
+        promptVersion: record.participant?.promptVersion ?? 'pilot-agent-arm-v1',
+        promptHash,
+        sessionId: usage.sessionId,
+        attempts: usage.attempts,
+        reasoningEffort: usage.model.reasoningEffort ?? null,
+      }
+      record.cost = armACost({ costModel, usage, requests })
+      record.latency = {
+        basis: 'session-wall-clock',
+        totalMs: usage.timing.wallClockMs,
+        meanMsPerRequest:
+          metricsMean(usage.timing.wallClockMs, requests),
+        p50Ms: null,
+        p95Ms: null,
+        note: 'the agent solved the batch in one session; per-case wall clock is not isolated, so percentiles are unavailable',
+      }
+      record.cases = normalized.cases.map((entry) => ({
+        ...entry,
+        latencyMs: null,
+        costUsd: null,
+      }))
+      record.usageSource = {
+        tool: 'pilot/meter-session.mjs',
+        source: usage.source,
+        sessionId: usage.sessionId,
+        timing: usage.timing,
+      }
+    } else {
+      record.cost = {
+        basis: 'unmetered',
+        perRequestUsd: null,
+        setupUsd: null,
+        maintenanceUsd: null,
+        authoringHours: null,
+        laborRateUsdPerHour: null,
+        components: null,
+        tokens: null,
+        modelPrices: null,
+      }
+      record.latency = { basis: 'unavailable', totalMs: null, meanMsPerRequest: null, p50Ms: null, p95Ms: null }
+    }
+    await fsp.writeFile(path.join(outDir, `arm-a-r${item.repeat}.json`), `${JSON.stringify(record, null, 2)}\n`, 'utf8')
   }
   const missingRepeats = []
   for (let repeat = 1; repeat <= repeats; repeat += 1) {
@@ -612,6 +787,9 @@ async function main() {
       Number(preregistration?.workload?.perRequestBudgetMs) || DEFAULT_PER_REQUEST_BUDGET_MS,
   }
 
+  const costModel = await loadCostModel(options.costModel)
+  const promptHash = await sha256File(ARM_A_PROMPT)
+
   const engine = await import(pathToFileURL(ENGINE_PATH).href)
   if (typeof engine.invokeRoutine !== 'function') {
     throw new Error(`${ENGINE_PATH} does not export invokeRoutine`)
@@ -622,7 +800,7 @@ async function main() {
 
   const scripted = []
   for (let repeat = 1; repeat <= options.repeats; repeat += 1) {
-    const armB = await runArmB({ cases, repeat, runId, workload, conditions })
+    const armB = await runArmB({ cases, repeat, runId, workload, conditions, costModel })
     const armC = await runArmC({
       engine,
       root,
@@ -633,6 +811,7 @@ async function main() {
       runId,
       workload,
       conditions,
+      costModel,
     })
     await writeRecord(path.join(outDir, `arm-b-r${repeat}.json`), armB)
     await writeRecord(path.join(outDir, `arm-c-r${repeat}.json`), armC)
@@ -647,6 +826,10 @@ async function main() {
       runId,
       caseIds: cases.map((entry) => entry.id),
       repeats: options.repeats,
+      usageDirectory: options.armAUsage,
+      costModel,
+      promptHash,
+      workload,
     })
   }
 
@@ -662,6 +845,7 @@ async function main() {
     `cases: ${cases.length} | repeats: ${options.repeats} | ` +
       `contract: ${conditions.contractRevision} | workload: ${workload.requests} requests / ${workload.horizonDays}d`,
   )
+  console.log(`cost model: ${path.relative(REPO_ROOT, path.resolve(options.costModel))} | labor $${costModel.laborRateUsdPerHour}/h | promptHash ${promptHash.slice(0, 12)}`)
   if (armAResult) {
     console.log(
       `arm A: ingested ${armAResult.count} measured record(s) for repeat(s) ${armAResult.repeats.join(', ')}` +

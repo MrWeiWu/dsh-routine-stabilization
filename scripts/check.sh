@@ -28,6 +28,7 @@ const files = [
   'seed/fixtures/normalize_detuning/v1/challenge.inputs.json',
   'seed/blind/normalize_detuning/v1/audit.labels.json',
   'seed/blind/normalize_detuning/v1/challenge.labels.json',
+  'pilot/cost-model.json',
 ]
 for (const file of files) {
   const parsed = JSON.parse(fs.readFileSync(file, 'utf8'))
@@ -75,6 +76,12 @@ node seed/evals/reference_check.mjs
 if [ -f pilot/selftest.mjs ]; then
   echo "== measured pilot runner self-test"
   node pilot/selftest.mjs
+fi
+
+if [ -f pilot/meter-session.mjs ]; then
+  echo "== arm A session meter"
+  node --check pilot/meter-session.mjs
+  node pilot/meter-session.mjs --help >/dev/null
 fi
 
 if [ -f scripts/score.mjs ]; then

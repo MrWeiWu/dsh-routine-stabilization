@@ -1,15 +1,20 @@
 {
   "schemaVersion": 2,
   "kind": "arm-run",
-  "runId": "pilot-real-1",
-  "arm": "B",
-  "repeat": 3,
+  "runId": "pilot-metered-1",
+  "arm": "A",
+  "repeat": 2,
   "provenance": "measured",
   "participant": {
-    "kind": "script",
-    "provider": "local",
-    "model": "pilot/arm-b.mjs",
-    "promptVersion": null
+    "kind": "llm-agent",
+    "provider": "deepseek-account",
+    "model": "deepseek-flash",
+    "promptVersion": "pilot-agent-arm-v1",
+    "modelSnapshot": "deepseek-account/deepseek-flash (DeepSeek-V4.1-Flash)",
+    "promptHash": "38f01152e601e437f16eff5abec757b237a3f04f47d557d3d95b65e491b87351",
+    "sessionId": "141ebef4-d4a6-4237-a05f-3c05e056fb13",
+    "attempts": 7,
+    "reasoningEffort": "high"
   },
   "conditions": {
     "contractRevision": "normalize_detuning/v1",
@@ -17,11 +22,41 @@
     "perRequestBudgetMs": 60000
   },
   "cost": {
-    "basis": "local-script",
-    "perRequestUsd": 0,
-    "setupUsd": 0,
+    "basis": "metered-token",
+    "perRequestUsd": 0.500161,
+    "setupUsd": 15,
     "maintenanceUsd": 0,
-    "authoringHours": null
+    "authoringHours": 0.25,
+    "laborRateUsdPerHour": 60,
+    "laborBasis": "declared",
+    "tokens": {
+      "inputTokens": 20670,
+      "outputTokens": 3578,
+      "cacheReadTokens": 186368,
+      "cacheWriteTokens": 0,
+      "totalTokens": 210616
+    },
+    "modelPrices": {
+      "inputPerMTokensUsd": 0.3,
+      "cachedInputPerMTokensUsd": 0.03,
+      "outputPerMTokensUsd": 1.2,
+      "modelKey": "deepseek-account/deepseek-flash",
+      "basis": "assumed-pilot-rate"
+    },
+    "tokenCostUsd": 0.016086,
+    "reviewCostUsd": 50,
+    "totalUsd": 65.016086,
+    "components": {
+      "construction": 15,
+      "labeling": 0,
+      "tests": 0,
+      "routing": 0,
+      "verification": 0,
+      "fallback": 0,
+      "humanReview": 50
+    },
+    "priceBasis": "assumed-pilot-rate",
+    "notes": "Prompt/harness construction is a one-time setup; every automatic answer needs a per-request human review (0.5 min) because a fresh agent has no pre-verified routine."
   },
   "workload": {
     "cases": 100,
@@ -36,10 +71,10 @@
       "fieldId": "probe_detuning",
       "sourceUnit": "rad/s",
       "valueHz": -248.85788553988746,
-      "latencyMs": 0.031792,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-002",
@@ -48,10 +83,10 @@
       "fieldId": "spectroscopy_detuning",
       "sourceUnit": "rad/s",
       "valueHz": -350.08453697625913,
-      "latencyMs": 0.004709,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-003",
@@ -60,10 +95,10 @@
       "fieldId": "spectroscopy_detuning",
       "sourceUnit": "kHz",
       "valueHz": -4810.549,
-      "latencyMs": 0.006875,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-004",
@@ -72,10 +107,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.001959,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-005",
@@ -84,10 +119,10 @@
       "fieldId": "trap_detuning",
       "sourceUnit": "kHz",
       "valueHz": 850.11,
-      "latencyMs": 0.003375,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-006",
@@ -96,10 +131,10 @@
       "fieldId": "probe_detuning",
       "sourceUnit": "rad/s",
       "valueHz": -403.97197375344774,
-      "latencyMs": 0.005125,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-007",
@@ -108,10 +143,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.000666,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-008",
@@ -120,10 +155,10 @@
       "fieldId": "offset_detuning",
       "sourceUnit": "Hz",
       "valueHz": 2716.233,
-      "latencyMs": 0.004834,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-009",
@@ -132,10 +167,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.011042,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-010",
@@ -144,10 +179,10 @@
       "fieldId": "probe_detuning",
       "sourceUnit": "Hz",
       "valueHz": -325.776,
-      "latencyMs": 0.003375,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-011",
@@ -156,10 +191,10 @@
       "fieldId": "laser_detuning",
       "sourceUnit": "rad/s",
       "valueHz": 59.36255223505845,
-      "latencyMs": 0.002667,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-012",
@@ -168,10 +203,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.000542,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-013",
@@ -180,10 +215,10 @@
       "fieldId": "carrier_detuning",
       "sourceUnit": "rad/s",
       "valueHz": -184.3240891967056,
-      "latencyMs": 0.002833,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-014",
@@ -192,10 +227,10 @@
       "fieldId": "trap_detuning",
       "sourceUnit": "Hz",
       "valueHz": 2629.161,
-      "latencyMs": 0.004875,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-015",
@@ -204,10 +239,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.002166,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-016",
@@ -216,10 +251,10 @@
       "fieldId": "trap_detuning",
       "sourceUnit": "Hz",
       "valueHz": -1043.476,
-      "latencyMs": 0.002417,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-017",
@@ -228,10 +263,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.017208,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-018",
@@ -240,10 +275,10 @@
       "fieldId": "laser_detuning",
       "sourceUnit": "Hz",
       "valueHz": 4362.415,
-      "latencyMs": 0.003208,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-019",
@@ -252,10 +287,10 @@
       "fieldId": "laser_detuning",
       "sourceUnit": "Hz",
       "valueHz": -1491.927,
-      "latencyMs": 0.002875,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-020",
@@ -264,10 +299,10 @@
       "fieldId": "detuning_freq",
       "sourceUnit": "kHz",
       "valueHz": 110.376,
-      "latencyMs": 0.007375,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-021",
@@ -276,10 +311,10 @@
       "fieldId": "aom_detuning",
       "sourceUnit": "rad/s",
       "valueHz": 423.18455703697134,
-      "latencyMs": 0.002917,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-022",
@@ -288,10 +323,10 @@
       "fieldId": "laser_detuning",
       "sourceUnit": "rad/s",
       "valueHz": -437.4829994046258,
-      "latencyMs": 0.002625,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-023",
@@ -300,10 +335,10 @@
       "fieldId": "trap_detuning",
       "sourceUnit": "kHz",
       "valueHz": 53.663000000000004,
-      "latencyMs": 0.003083,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-024",
@@ -312,10 +347,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.000292,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-025",
@@ -324,10 +359,10 @@
       "fieldId": "spectroscopy_detuning",
       "sourceUnit": "rad/s",
       "valueHz": 197.1062932975824,
-      "latencyMs": 0.004625,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-026",
@@ -336,10 +371,10 @@
       "fieldId": "detuning_freq",
       "sourceUnit": "rad/s",
       "valueHz": -123.99517026973024,
-      "latencyMs": 0.002625,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-027",
@@ -348,10 +383,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.002959,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-028",
@@ -360,10 +395,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.000417,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-029",
@@ -372,10 +407,10 @@
       "fieldId": "probe_detuning",
       "sourceUnit": "Hz",
       "valueHz": 1736.915,
-      "latencyMs": 0.004958,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-030",
@@ -384,10 +419,10 @@
       "fieldId": "aom_detuning",
       "sourceUnit": "kHz",
       "valueHz": 1425.8919999999998,
-      "latencyMs": 0.004834,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-031",
@@ -396,10 +431,10 @@
       "fieldId": "trap_detuning",
       "sourceUnit": "Hz",
       "valueHz": -3876.41,
-      "latencyMs": 0.004583,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-032",
@@ -408,10 +443,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.000625,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-033",
@@ -420,10 +455,10 @@
       "fieldId": "spectroscopy_detuning",
       "sourceUnit": "rad/s",
       "valueHz": -225.63902840490874,
-      "latencyMs": 0.002708,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-034",
@@ -432,10 +467,10 @@
       "fieldId": "detuning_freq",
       "sourceUnit": "Hz",
       "valueHz": 12.023,
-      "latencyMs": 0.002583,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-035",
@@ -444,10 +479,10 @@
       "fieldId": "probe_detuning",
       "sourceUnit": "kHz",
       "valueHz": -1477.501,
-      "latencyMs": 0.004542,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-036",
@@ -456,10 +491,10 @@
       "fieldId": "aom_detuning",
       "sourceUnit": "kHz",
       "valueHz": 3091.914,
-      "latencyMs": 0.004292,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-037",
@@ -468,10 +503,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.000916,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-038",
@@ -480,10 +515,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.000459,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-039",
@@ -492,10 +527,10 @@
       "fieldId": "laser_detuning",
       "sourceUnit": "kHz",
       "valueHz": -4673.192,
-      "latencyMs": 0.003083,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-040",
@@ -504,10 +539,10 @@
       "fieldId": "probe_detuning",
       "sourceUnit": "rad/s",
       "valueHz": 392.8240563237385,
-      "latencyMs": 0.002375,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-041",
@@ -516,10 +551,10 @@
       "fieldId": "detuning_freq",
       "sourceUnit": "rad/s",
       "valueHz": -369.7203142083938,
-      "latencyMs": 0.002542,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-042",
@@ -528,10 +563,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.0025,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-043",
@@ -540,10 +575,10 @@
       "fieldId": "detuning_freq",
       "sourceUnit": "kHz",
       "valueHz": -3323.8759999999997,
-      "latencyMs": 0.004625,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-044",
@@ -552,10 +587,10 @@
       "fieldId": "spectroscopy_detuning",
       "sourceUnit": "kHz",
       "valueHz": 1049.295,
-      "latencyMs": 0.004333,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-045",
@@ -564,10 +599,10 @@
       "fieldId": "carrier_detuning",
       "sourceUnit": "rad/s",
       "valueHz": 269.11751322499555,
-      "latencyMs": 0.00275,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-046",
@@ -576,10 +611,10 @@
       "fieldId": "spectroscopy_detuning",
       "sourceUnit": "Hz",
       "valueHz": 956.577,
-      "latencyMs": 0.0045,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-047",
@@ -588,10 +623,10 @@
       "fieldId": "aom_detuning",
       "sourceUnit": "Hz",
       "valueHz": 1614.734,
-      "latencyMs": 0.002834,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-048",
@@ -600,10 +635,10 @@
       "fieldId": "detuning_freq",
       "sourceUnit": "rad/s",
       "valueHz": 86.38451143240913,
-      "latencyMs": 0.002584,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-049",
@@ -612,10 +647,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.000709,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-050",
@@ -624,10 +659,10 @@
       "fieldId": "probe_detuning",
       "sourceUnit": "rad/s",
       "valueHz": 156.86084634075715,
-      "latencyMs": 0.002584,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-051",
@@ -636,10 +671,10 @@
       "fieldId": "spectroscopy_detuning",
       "sourceUnit": "Hz",
       "valueHz": 4382.328,
-      "latencyMs": 0.002584,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-052",
@@ -648,10 +683,10 @@
       "fieldId": "carrier_detuning",
       "sourceUnit": "kHz",
       "valueHz": 2384.854,
-      "latencyMs": 0.002292,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-053",
@@ -660,10 +695,10 @@
       "fieldId": "spectroscopy_detuning",
       "sourceUnit": "rad/s",
       "valueHz": -459.45646401695217,
-      "latencyMs": 0.0025,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-054",
@@ -672,10 +707,10 @@
       "fieldId": "probe_detuning",
       "sourceUnit": "kHz",
       "valueHz": 577.335,
-      "latencyMs": 0.002541,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-055",
@@ -684,10 +719,10 @@
       "fieldId": "detuning_freq",
       "sourceUnit": "rad/s",
       "valueHz": 452.63387644325496,
-      "latencyMs": 0.004584,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-056",
@@ -696,10 +731,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.0015,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-057",
@@ -708,10 +743,10 @@
       "fieldId": "detuning_freq",
       "sourceUnit": "Hz",
       "valueHz": 3814.645,
-      "latencyMs": 0.004542,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-058",
@@ -720,10 +755,10 @@
       "fieldId": "offset_detuning",
       "sourceUnit": "Hz",
       "valueHz": 3926.6,
-      "latencyMs": 0.002625,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-059",
@@ -732,10 +767,10 @@
       "fieldId": "probe_detuning",
       "sourceUnit": "kHz",
       "valueHz": -2527.5370000000003,
-      "latencyMs": 0.002541,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-060",
@@ -744,10 +779,10 @@
       "fieldId": "carrier_detuning",
       "sourceUnit": "Hz",
       "valueHz": -927.334,
-      "latencyMs": 0.002625,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-061",
@@ -756,10 +791,10 @@
       "fieldId": "carrier_detuning",
       "sourceUnit": "kHz",
       "valueHz": -2836.401,
-      "latencyMs": 0.002667,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-062",
@@ -768,10 +803,10 @@
       "fieldId": "aom_detuning",
       "sourceUnit": "kHz",
       "valueHz": 3740.857,
-      "latencyMs": 0.002333,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-063",
@@ -780,10 +815,10 @@
       "fieldId": "spectroscopy_detuning",
       "sourceUnit": "kHz",
       "valueHz": -5.065,
-      "latencyMs": 0.002625,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-064",
@@ -792,10 +827,10 @@
       "fieldId": "detuning_freq",
       "sourceUnit": "rad/s",
       "valueHz": 261.6150238513119,
-      "latencyMs": 0.004708,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-065",
@@ -804,10 +839,10 @@
       "fieldId": "offset_detuning",
       "sourceUnit": "kHz",
       "valueHz": 4390.902999999999,
-      "latencyMs": 0.004625,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-066",
@@ -816,10 +851,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.00025,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-067",
@@ -828,10 +863,10 @@
       "fieldId": "aom_detuning",
       "sourceUnit": "kHz",
       "valueHz": 2288.062,
-      "latencyMs": 0.002625,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-068",
@@ -840,10 +875,10 @@
       "fieldId": "detuning_freq",
       "sourceUnit": "kHz",
       "valueHz": 2619.5080000000003,
-      "latencyMs": 0.0025,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-069",
@@ -852,10 +887,10 @@
       "fieldId": "offset_detuning",
       "sourceUnit": "kHz",
       "valueHz": 2228.982,
-      "latencyMs": 0.002333,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-070",
@@ -864,10 +899,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.000417,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-071",
@@ -876,10 +911,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.0005,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-072",
@@ -888,10 +923,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.000375,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-073",
@@ -900,10 +935,10 @@
       "fieldId": "spectroscopy_detuning",
       "sourceUnit": "kHz",
       "valueHz": 965.9069999999999,
-      "latencyMs": 0.0025,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-074",
@@ -912,10 +947,10 @@
       "fieldId": "trap_detuning",
       "sourceUnit": "rad/s",
       "valueHz": 29.115770752608686,
-      "latencyMs": 0.002666,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-075",
@@ -924,10 +959,10 @@
       "fieldId": "trap_detuning",
       "sourceUnit": "Hz",
       "valueHz": -1654.338,
-      "latencyMs": 0.005666,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-076",
@@ -936,10 +971,10 @@
       "fieldId": "laser_detuning",
       "sourceUnit": "kHz",
       "valueHz": -1308.971,
-      "latencyMs": 0.004625,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-077",
@@ -948,10 +983,10 @@
       "fieldId": "spectroscopy_detuning",
       "sourceUnit": "rad/s",
       "valueHz": -224.31010356952967,
-      "latencyMs": 0.004791,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-078",
@@ -960,10 +995,10 @@
       "fieldId": "laser_detuning",
       "sourceUnit": "Hz",
       "valueHz": 2345.395,
-      "latencyMs": 0.002708,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-079",
@@ -972,10 +1007,10 @@
       "fieldId": "detuning_freq",
       "sourceUnit": "rad/s",
       "valueHz": 70.95743801962278,
-      "latencyMs": 0.00475,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-080",
@@ -984,10 +1019,10 @@
       "fieldId": "detuning_freq",
       "sourceUnit": "kHz",
       "valueHz": 2837.561,
-      "latencyMs": 0.002583,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-081",
@@ -996,10 +1031,10 @@
       "fieldId": "laser_detuning",
       "sourceUnit": "kHz",
       "valueHz": -3599.8039999999996,
-      "latencyMs": 0.002541,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-082",
@@ -1008,10 +1043,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.000333,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-083",
@@ -1020,10 +1055,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.000292,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-084",
@@ -1032,10 +1067,10 @@
       "fieldId": "detuning_freq",
       "sourceUnit": "rad/s",
       "valueHz": 13.060557024512805,
-      "latencyMs": 0.002417,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-085",
@@ -1044,10 +1079,10 @@
       "fieldId": "offset_detuning",
       "sourceUnit": "rad/s",
       "valueHz": -327.34823969774936,
-      "latencyMs": 0.002417,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-086",
@@ -1056,10 +1091,10 @@
       "fieldId": "probe_detuning",
       "sourceUnit": "rad/s",
       "valueHz": -121.9376266245941,
-      "latencyMs": 0.002167,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-087",
@@ -1068,10 +1103,10 @@
       "fieldId": "spectroscopy_detuning",
       "sourceUnit": "kHz",
       "valueHz": -3005.672,
-      "latencyMs": 0.002125,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-088",
@@ -1080,10 +1115,10 @@
       "fieldId": "detuning_freq",
       "sourceUnit": "Hz",
       "valueHz": -2731.257,
-      "latencyMs": 0.002375,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-089",
@@ -1092,10 +1127,10 @@
       "fieldId": "laser_detuning",
       "sourceUnit": "Hz",
       "valueHz": 2132.336,
-      "latencyMs": 0.002208,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-090",
@@ -1104,10 +1139,10 @@
       "fieldId": "laser_detuning",
       "sourceUnit": "Hz",
       "valueHz": -2742.005,
-      "latencyMs": 0.002167,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-091",
@@ -1116,10 +1151,10 @@
       "fieldId": "probe_detuning",
       "sourceUnit": "rad/s",
       "valueHz": -117.18065121502805,
-      "latencyMs": 0.002166,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-092",
@@ -1128,10 +1163,10 @@
       "fieldId": "spectroscopy_detuning",
       "sourceUnit": "rad/s",
       "valueHz": -166.86401017044417,
-      "latencyMs": 0.002334,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-093",
@@ -1140,10 +1175,10 @@
       "fieldId": null,
       "sourceUnit": null,
       "valueHz": null,
-      "latencyMs": 0.000166,
-      "costUsd": 0,
       "firstRoute": "defer",
-      "finalOutcome": "deferred"
+      "finalOutcome": "deferred",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-094",
@@ -1152,10 +1187,10 @@
       "fieldId": "aom_detuning",
       "sourceUnit": "Hz",
       "valueHz": -4675.842,
-      "latencyMs": 0.002375,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-095",
@@ -1164,10 +1199,10 @@
       "fieldId": "offset_detuning",
       "sourceUnit": "kHz",
       "valueHz": 5.413,
-      "latencyMs": 0.008958,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-096",
@@ -1176,10 +1211,10 @@
       "fieldId": "spectroscopy_detuning",
       "sourceUnit": "Hz",
       "valueHz": 445.446,
-      "latencyMs": 0.0045,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-097",
@@ -1188,10 +1223,10 @@
       "fieldId": "offset_detuning",
       "sourceUnit": "rad/s",
       "valueHz": 153.9986625723665,
-      "latencyMs": 0.004417,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-098",
@@ -1200,10 +1235,10 @@
       "fieldId": "laser_detuning",
       "sourceUnit": "Hz",
       "valueHz": 3362.853,
-      "latencyMs": 0.002291,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-099",
@@ -1212,10 +1247,10 @@
       "fieldId": "spectroscopy_detuning",
       "sourceUnit": "Hz",
       "valueHz": -2300.922,
-      "latencyMs": 0.004084,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     },
     {
       "caseId": "audit-100",
@@ -1224,10 +1259,28 @@
       "fieldId": "spectroscopy_detuning",
       "sourceUnit": "kHz",
       "valueHz": 1718.008,
-      "latencyMs": 0.00425,
-      "costUsd": 0,
       "firstRoute": "accept",
-      "finalOutcome": "resolved"
+      "finalOutcome": "resolved",
+      "latencyMs": null,
+      "costUsd": null
     }
-  ]
+  ],
+  "latency": {
+    "basis": "session-wall-clock",
+    "totalMs": 32449,
+    "meanMsPerRequest": 324.49,
+    "p50Ms": null,
+    "p95Ms": null,
+    "note": "the agent solved the batch in one session; per-case wall clock is not isolated, so percentiles are unavailable"
+  },
+  "usageSource": {
+    "tool": "pilot/meter-session.mjs",
+    "source": "durable session log (provider-reported usage, same fields as the DSH token-meter tokenUsage projection)",
+    "sessionId": "141ebef4-d4a6-4237-a05f-3c05e056fb13",
+    "timing": {
+      "startedAt": 1794085537632,
+      "endedAt": 1794085570081,
+      "wallClockMs": 32449
+    }
+  }
 }

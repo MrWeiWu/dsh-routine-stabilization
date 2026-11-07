@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "currency": "USD",
+  "description": "Declared pilot cost assumptions. Model prices and labor rates are stated inputs, not measurements; replace them with the provider contract and the operator's labor rate before trusting projected totals. Token counts for arm A come from pilot/meter-session.mjs (provider-reported usage), wall-clock from the same durable session log.",
+  "laborRateUsdPerHour": 60,
+  "modelPrices": {
+    "deepseek-account/deepseek-flash": {
+      "inputPerMTokensUsd": 0.3,
+      "cachedInputPerMTokensUsd": 0.03,
+      "outputPerMTokensUsd": 1.2,
+      "basis": "assumed-pilot-rate"
+    }
+  },
+  "arms": {
+    "A": {
+      "kind": "llm-agent",
+      "setupHours": 0.25,
+      "maintenanceHours": 0,
+      "perRequestReviewMinutes": 0.5,
+      "componentsHours": {
+        "construction": 0.25,
+        "labeling": 0,
+        "tests": 0,
+        "routing": 0,
+        "verification": 0,
+        "fallback": 0,
+        "humanReview": 0
+      },
+      "notes": "Prompt/harness construction is a one-time setup; every automatic answer needs a per-request human review (0.5 min) because a fresh agent has no pre-verified routine."
+    },
+    "B": {
+      "kind": "script",
+      "setupHours": 0.75,
+      "maintenanceHours": 0.1,
+      "perRequestReviewMinutes": 0,
+      "componentsHours": {
+        "construction": 0.5,
+        "labeling": 0,
+        "tests": 0.15,
+        "routing": 0.05,
+        "verification": 0.05,
+        "fallback": 0,
+        "humanReview": 0
+      },
+      "notes": "Hand-written guard/binding/conversion from the contract; deterministic, so no per-request review."
+    },
+    "C": {
+      "kind": "script",
+      "setupHours": 4.25,
+      "maintenanceHours": 0.5,
+      "perRequestReviewMinutes": 0,
+      "componentsHours": {
+        "construction": 1.5,
+        "labeling": 1,
+        "tests": 1,
+        "routing": 0.25,
+        "verification": 0.5,
+        "fallback": 0,
+        "humanReview": 0
+      },
+      "notes": "Routine hooks, dev/audit/challenge fixtures, independent reference check, gate review and routing integration."
+    }
+  }
+}

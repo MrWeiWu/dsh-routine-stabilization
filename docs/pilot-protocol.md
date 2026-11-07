@@ -175,3 +175,27 @@ eligibility](framework.md) check stays blocked while `realDeploymentData` is
   the pilot must follow.
 - [Review](review.md) — who signs off on candidate code and reference outcomes.
 - `pilot/README.md` in the repository — runner-level protocol details.
+
+
+## Metering and cost model (v0.3)
+
+Arm A is metered from its durable session log with
+`pilot/meter-session.mjs`: the fold reads the provider-reported
+`usage` fields (`inputTokens`, `outputTokens`, `cacheReadTokens`,
+`cacheWriteTokens`) that the DSH token-meter projects as `tokenUsage`, together
+with the session start/end times for a batch wall clock. The runner attaches
+those numbers and the prompt-file hash to the raw arm record; the agent's
+decisions stay unchanged and label-free.
+
+USD costs come from the declared `pilot/cost-model.json`: model prices (input,
+cached input, output), a labor rate, and per-arm setup/maintenance hours with a
+component breakdown. Every value is a declared assumption with its basis in the
+record; a complete comparison requires numeric per-request, setup and
+maintenance costs for all three arms. Per-case latency is reported for the
+scripted arms; arm A reports a session wall clock and marks per-case percentiles
+unavailable because the agent batches the cases.
+
+The pilot decision uses the complete projected total: `advance-to-shadow`
+requires a fresh passing report, end-to-end success at least equal to both
+baselines, and a lower projected total than both. Partial or assumed-only cost
+data yields `inconclusive`.

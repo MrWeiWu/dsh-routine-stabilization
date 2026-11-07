@@ -4,6 +4,39 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2026-11-07
+
+### Added
+
+- Arm A token metering: `pilot/meter-session.mjs` folds the durable session
+  usage (provider-reported fields of the DSH token-meter `tokenUsage`
+  projection) into a per-session usage record; `pilot/run.mjs --arm-a-usage`
+  attaches it to the raw arm-A records with the model snapshot, prompt hash and
+  session id.
+- Declared cost model `pilot/cost-model.json`: model prices, labor rate and a
+  component breakdown (construction, labeling, tests, routing, verification,
+  fallback, human review); `routine_compare` reports the complete projected
+  total, setup/maintenance/per-request costs and cost per correct resolution.
+- Measured metered pilot evidence under `pilot/evidence/pilot-metered-1/` with
+  `pilot/RESULTS.md`: complete economic comparison, pilot decision
+  `do-not-advance` at the declared horizon (C correct but not cheaper than both
+  baselines), release still blocked.
+
+### Changed
+
+- The pilot decision is now computed from a complete cost picture when every arm
+  has numeric per-request, setup and maintenance costs; the `inconclusive`
+  state remains for genuinely incomplete cost data.
+- Arm records may carry an arm-level `latency` method (session wall clock when
+  per-case timing is not isolated); the comparison reports it instead of
+  implying per-case percentiles.
+
+### Notes
+
+- Model prices and B/C labor hours are declared assumptions, not billing or
+  time-tracking measurements; replace them with the provider contract before
+  trusting projected costs.
+
 ## [0.2.0] - 2026-11-07
 
 Review follow-up release: blind evidence, preregistration, release eligibility

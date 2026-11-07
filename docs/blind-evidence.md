@@ -160,3 +160,15 @@ contaminated set may remain as historical evidence only.
 - [Pilot protocol](pilot-protocol.md) — how reference outcomes are scored during
   the real pilot.
 - [Framework](framework.md) — the rules in context.
+
+
+## Agent-tool guard
+
+The Host also installs a tool guard that refuses any agent tool call whose
+arguments name the protected tree (`blind/`, the audit/challenge label files).
+The guard makes accidental reads by the agent fail loudly; it is a discipline
+barrier, not a kernel-level isolation: the agent and the operator share one OS
+user, and an obfuscated shell command could still reach the files. The real
+read barrier is the 0700/0600 mode enforced by `pilot/meter-session`'s sibling
+`store.seedExample` and by the scoring workflow (labels are for the release
+reviewer, through `scripts/score.mjs`).

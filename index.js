@@ -110,6 +110,21 @@ export function apply(ctx, config = {}) {
       console.error(`[routine-stabilization] cannot initialize registry root ${root}: ${error.message}`)
     })
 
+    // Discipline barrier: agent tools may not name the protected blind tree.
+    // The real read barrier is the 0700/0600 file mode; the release reviewer
+    // reads per-case scoring through scripts/score.mjs, not a tool argument.
+    if (ctx.tools?.guard) {
+      disposers.push(
+        ctx.tools.guard((execution) => {
+          const text = JSON.stringify(execution?.arguments ?? {})
+          if (/blind[\\/]/i.test(text) || text.includes('audit.labels') || text.includes('challenge.labels')) {
+            return 'the protected blind labels are not readable through agent tools; use scripts/score.mjs as the release reviewer'
+          }
+          return undefined
+        }),
+      )
+    }
+
     disposers.push(registerTools(ctx, operations))
 
     const connection = ctx.get('connection')

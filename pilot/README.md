@@ -233,3 +233,37 @@ asserts:
   repeat metadata, and writes them as `arm-a-r<repeat>.json`.
 
 The self-test does not read blind labels and does not perform any scoring.
+
+
+## Metering arm A (token usage and wall clock)
+
+Arm A is a real LLM agent run, so its cost is measured rather than declared:
+
+1. run the agent (per `pilot/arm-a-prompt.md`) and keep the child session id;
+2. fold its durable session log with the DSH token-meter's provider-reported
+   usage fields (`tokenUsage`: input/output/cache read/cache write):
+   ```bash
+   node pilot/meter-session.mjs --session <session-id> --out pilot/evidence/<run>/usage-a-r1.json
+   ```
+3. pass the usage directory to the runner:
+   ```bash
+   node pilot/run.mjs --root "$DSH_HOME/routine-registry" --run-id <run> \
+     --arm-a <arm-a-records-dir> --arm-a-usage pilot/evidence/<run> \
+     --cost-model pilot/cost-model.json
+   ```
+
+The runner attaches to each arm-A record: the model snapshot
+(provider/model plus the DeepSeek-V4.1-Flash label), the prompt file hash, the
+session id, the token counts, the measured batch wall clock, and the USD token
+cost from the declared model prices. `latency.basis` is
+`session-wall-clock` for arm A: the agent batches the cases, so per-case
+percentiles are not isolated. B/C keep per-case `hrtime` measurements.
+
+`pilot/cost-model.json` declares the model prices, the labor rate, and per-arm
+setup/maintenance hours plus a component breakdown (construction, labeling,
+tests, routing, verification, fallback, human review). These are **declared
+assumptions**; replace them with the provider contract and staff rates before
+trusting projected totals. `routine_compare` computes
+`setup + maintenance + requests × per-request`, the cost per correct
+resolution, and marks the cost picture complete only when every arm has numeric
+per-request, setup and maintenance costs.

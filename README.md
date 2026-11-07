@@ -194,9 +194,13 @@ Details: [Blind evidence](docs/blind-evidence.md),
 
 A generated arm table is not evidence. The v0.2 pilot is a **measured run** with
 three arms over the same audit inputs. This repository ships the raw records of
-one such run under `pilot/evidence/pilot-real-1/` with its reading in
-[`pilot/RESULTS.md`](pilot/RESULTS.md) (result: outcome parity, cost incomplete,
-decision `inconclusive`, no release).
+one such run under `pilot/evidence/pilot-metered-1/` with its reading in
+[`pilot/RESULTS.md`](pilot/RESULTS.md). Arm A is metered through the durable
+session usage (the provider-reported fields the DSH token-meter projects) by
+`pilot/meter-session.mjs`; prices and labor rates are declared in
+`pilot/cost-model.json`. At the declared horizon the complete comparison returns
+`do-not-advance` (C is correct but not cheaper than both baselines), and release
+stays blocked.
 
 - **A** — a fresh LLM agent using ordinary tools (`participant.kind:
   "llm-agent"`, recorded provider/model/prompt version; cost basis `unmetered`
@@ -386,11 +390,13 @@ non-owner principal; no agent tool calls them.
   reviewer, so it is release-ineligible by construction; it demonstrates the
   gates and eligibility rules but cannot estimate a real deployment error rate.
 - The repository ships one measured pilot run as evidence
-  (`pilot/evidence/pilot-real-1/`, read `pilot/RESULTS.md`). B/C records come
-  from `pilot/run.mjs`; a three-arm comparison additionally needs a real LLM
-  agent run for arm A (`--arm-a`). Generated or legacy records are not evidence
-  and a run without measured runs is refused. The shipped run is synthetic and
-  cost-incomplete, so it demonstrates the pipeline rather than an advance.
+  (`pilot/evidence/pilot-metered-1/`, read `pilot/RESULTS.md`): arm A is metered
+  (tokens from the durable session log, wall clock for the batch), B/C carry
+  declared labor costs. The run is synthetic and its decision is
+  `do-not-advance`, so it demonstrates the economic comparison rather than an
+  advance. Arm A batches the cases, so its per-case latency percentiles are not
+  isolated; model prices and labor hours are declared assumptions, not measured
+  billing data.
 - Label permissions (0700/0600) are a contamination barrier for cooperating
   processes, not a multi-user security boundary: the Host runs as the same OS
   user that can read the registry. The scoring command and its output are for
