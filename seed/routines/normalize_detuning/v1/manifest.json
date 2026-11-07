@@ -216,6 +216,7 @@
     "evaluator": "evals/normalize_detuning/v1/reference_check.mjs",
     "preregistration": "preregistration.json",
     "approvedRelease": null,
-    "withdrawalTrigger": "Withdraw the released version on any postcondition failure, any challenge-set case that is auto-accepted with a wrong answer, or any silent error on the audit set; fall back to ask-user until a new version passes the reference check."
+    "withdrawalTrigger": "Withdraw the released version on any postcondition failure, any challenge-set case that is auto-accepted with a wrong answer, or any silent error on the audit set; fall back to ask-user until a new version passes the reference check.",
+    "routineProvenance": "contract-derived"
   }
 }

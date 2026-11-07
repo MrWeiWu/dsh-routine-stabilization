@@ -4,6 +4,32 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2026-11-07
+
+### Added
+
+- Observe step: `routine_observe` / `routine_observations` and a payload-minimized
+  observation ledger (`observations/observations.jsonl`); `routine_propose`
+  accepts `sourceTraceIds` and writes `observed-request` derivation traces, and
+  `validateManifest`/evaluate require and resolve them for a trace-derived
+  routine.
+- Fresh evidence cycle: `pilot/fresh-audit.mjs` deterministically generates a
+  new audit/challenge label set from a different seed, independently
+  re-derived; `pilot/propose-v2.mjs` creates candidate v2 as trace-derived from
+  recorded observations with a frozen preregistration and its own independent
+  reference check (`pilot/v2-reference-check.mjs`).
+- Per-request arm-A latency protocol: a fresh agent per sampled request
+  (`pilot/arm-a-percase-prompt.md`), metered by `pilot/meter-percase.mjs` from
+  the durable session logs, and attached to the arm-A records by
+  `pilot/run.mjs --arm-a-latency`.
+
+### Changed
+
+- v2 candidate evaluation runs against a previously unseen label set; the
+  consumed v1 labels are never reused and the cross-reset ledger records both.
+- The v1 seed manifest records `routineProvenance: contract-derived`; only a
+  routine with observed-request traces is labelled trace-derived.
+
 ## [0.3.1] - 2026-11-07
 
 ### Added

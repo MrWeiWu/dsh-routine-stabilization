@@ -84,6 +84,17 @@ if [ -f pilot/meter-session.mjs ]; then
   node pilot/meter-session.mjs --help >/dev/null
 fi
 
+if [ -f pilot/fresh-audit.mjs ]; then
+  echo "== fresh evidence-cycle generator (deterministic)"
+  node pilot/fresh-audit.mjs >/dev/null
+fi
+
+if [ -f pilot/meter-percase.mjs ]; then
+  echo "== per-request arm A meter"
+  node --check pilot/meter-percase.mjs
+  node pilot/meter-percase.mjs --help >/dev/null
+fi
+
 if [ -f scripts/score.mjs ]; then
   echo "== scoring command syntax and empty-root failure behaviour"
   node --check scripts/score.mjs

@@ -199,3 +199,21 @@ The pilot decision uses the complete projected total: `advance-to-shadow`
 requires a fresh passing report, end-to-end success at least equal to both
 baselines, and a lower projected total than both. Partial or assumed-only cost
 data yields `inconclusive`.
+
+
+## Per-request latency sample
+
+Batch arm-A sessions only support attempt-level percentiles. To report
+per-request p50/p95, run one fresh agent per sampled request (the shipped
+protocol uses 20 sampled cases × 3 repeats), record the wall clock per call,
+and meter the child sessions with `pilot/meter-percase.mjs`. The runner attaches
+the sample with `--arm-a-latency`; the arm record states the sample size and
+basis, and the full-run cost still comes from the batch metering.
+
+## Fresh evidence cycles
+
+When a candidate's label set has been consumed (or a repair is informed by
+blind failures), create a new candidate and a new label set; do not reuse the
+old labels. `pilot/fresh-audit.mjs` generates a deterministic fresh set from a
+different seed, `pilot/propose-v2.mjs` records observed-request derivation
+traces, and the cross-reset ledger proves the first use of the new labels.

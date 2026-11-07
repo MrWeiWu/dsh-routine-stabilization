@@ -1,0 +1,1793 @@
+{
+  "schemaVersion": 1,
+  "kind": "arm-a-per-request-sample",
+  "generatedAt": "2026-11-07T22:47:20.405Z",
+  "samples": 60,
+  "cases": 20,
+  "repeats": 3,
+  "model": "deepseek-account/deepseek-flash (DeepSeek-V4.1-Flash)",
+  "latency": {
+    "basis": "per-request-sampled",
+    "n": 60,
+    "p50Ms": 3611,
+    "p95Ms": 7033,
+    "meanMs": 4246.416666666667,
+    "minMs": 2487,
+    "maxMs": 9051
+  },
+  "tokenCostUsd": {
+    "n": 60,
+    "mean": 0.0018728709999999997,
+    "total": 0.11237225999999999
+  },
+  "decisions": {
+    "accept": 42,
+    "defer": 18,
+    "missing": 0
+  },
+  "correctness": {
+    "correct": 60,
+    "silentErrors": 0,
+    "e2eSuccess": 60,
+    "scored": 60
+  },
+  "discarded": 1,
+  "perSessions": [
+    {
+      "caseId": "audit-001",
+      "repeat": 1,
+      "sessionId": "a4fbbc44-ab8f-414a-abc4-d939bbeaac40",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "probe_detuning",
+      "sourceUnit": "rad/s",
+      "valueHz": -248.85788553988746,
+      "attempts": 3,
+      "tokens": {
+        "inputTokens": 8087,
+        "outputTokens": 578,
+        "cacheReadTokens": 32768,
+        "cacheWriteTokens": 0,
+        "totalTokens": 41433
+      },
+      "tokenCostUsd": 0.00410274,
+      "latencyMs": 8184,
+      "attemptLatenciesMs": [
+        4317,
+        2708,
+        1000
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-002",
+      "repeat": 1,
+      "sessionId": "c3624d39-d14f-448a-9aed-67db8df37b9b",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "spectroscopy_detuning",
+      "sourceUnit": "rad/s",
+      "valueHz": -350.08453697625913,
+      "attempts": 3,
+      "tokens": {
+        "inputTokens": 2118,
+        "outputTokens": 326,
+        "cacheReadTokens": 38272,
+        "cacheWriteTokens": 0,
+        "totalTokens": 40716
+      },
+      "tokenCostUsd": 0.00217476,
+      "latencyMs": 4842,
+      "attemptLatenciesMs": [
+        1493,
+        1827,
+        1404
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-003",
+      "repeat": 1,
+      "sessionId": "7d285280-542e-4689-a92d-578dae67b745",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "spectroscopy_detuning",
+      "sourceUnit": "kHz",
+      "valueHz": -4810.549,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1960,
+        "outputTokens": 208,
+        "cacheReadTokens": 24832,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27000
+      },
+      "tokenCostUsd": 0.00158256,
+      "latencyMs": 2860,
+      "attemptLatenciesMs": [
+        1336,
+        1462
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-004",
+      "repeat": 1,
+      "sessionId": "c69b3cd2-1b33-433c-9712-5b5167353357",
+      "decision": "defer",
+      "reason": "competing-fields",
+      "fieldId": null,
+      "sourceUnit": null,
+      "valueHz": null,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1914,
+        "outputTokens": 310,
+        "cacheReadTokens": 24832,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27056
+      },
+      "tokenCostUsd": 0.00169116,
+      "latencyMs": 3015,
+      "attemptLatenciesMs": [
+        965,
+        1972
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-005",
+      "repeat": 1,
+      "sessionId": "c581a40c-2fcd-4f7d-bf6a-8c8bd6470cb7",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "trap_detuning",
+      "sourceUnit": "kHz",
+      "valueHz": 850.11,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1869,
+        "outputTokens": 281,
+        "cacheReadTokens": 24832,
+        "cacheWriteTokens": 0,
+        "totalTokens": 26982
+      },
+      "tokenCostUsd": 0.00164286,
+      "latencyMs": 3280,
+      "attemptLatenciesMs": [
+        1361,
+        1863
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-006",
+      "repeat": 1,
+      "sessionId": "bbc98e13-9dfe-4dfc-b0d2-8ee6e79cd179",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "probe_detuning",
+      "sourceUnit": "rad/s",
+      "valueHz": -403.97197375344774,
+      "attempts": 3,
+      "tokens": {
+        "inputTokens": 2235,
+        "outputTokens": 991,
+        "cacheReadTokens": 39040,
+        "cacheWriteTokens": 0,
+        "totalTokens": 42266
+      },
+      "tokenCostUsd": 0.0030309,
+      "latencyMs": 9051,
+      "attemptLatenciesMs": [
+        1133,
+        4813,
+        2970
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-007",
+      "repeat": 1,
+      "sessionId": "b7c27d48-f0f7-4ee7-a890-3ab39ba50a41",
+      "decision": "defer",
+      "reason": "invalid-value",
+      "fieldId": null,
+      "sourceUnit": null,
+      "valueHz": null,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1856,
+        "outputTokens": 305,
+        "cacheReadTokens": 24832,
+        "cacheWriteTokens": 0,
+        "totalTokens": 26993
+      },
+      "tokenCostUsd": 0.00166776,
+      "latencyMs": 4462,
+      "attemptLatenciesMs": [
+        1846,
+        2549
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-008",
+      "repeat": 1,
+      "sessionId": "d75df093-b2bf-4c2b-ae5d-3e9c45052bce",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "offset_detuning",
+      "sourceUnit": "Hz",
+      "valueHz": 2716.233,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1955,
+        "outputTokens": 254,
+        "cacheReadTokens": 24832,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27041
+      },
+      "tokenCostUsd": 0.00163626,
+      "latencyMs": 3107,
+      "attemptLatenciesMs": [
+        1209,
+        1837
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-009",
+      "repeat": 1,
+      "sessionId": "da71ecbb-c3ad-4532-acb1-6f9ff3e402b6",
+      "decision": "defer",
+      "reason": "competing-fields",
+      "fieldId": null,
+      "sourceUnit": null,
+      "valueHz": null,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1956,
+        "outputTokens": 348,
+        "cacheReadTokens": 24832,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27136
+      },
+      "tokenCostUsd": 0.00174936,
+      "latencyMs": 4168,
+      "attemptLatenciesMs": [
+        1482,
+        2625
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-010",
+      "repeat": 1,
+      "sessionId": "a6ea4eab-063e-41bc-b8b9-07227a9bb496",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "probe_detuning",
+      "sourceUnit": "Hz",
+      "valueHz": -325.776,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1852,
+        "outputTokens": 251,
+        "cacheReadTokens": 24832,
+        "cacheWriteTokens": 0,
+        "totalTokens": 26935
+      },
+      "tokenCostUsd": 0.00160176,
+      "latencyMs": 3703,
+      "attemptLatenciesMs": [
+        1612,
+        2031
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-011",
+      "repeat": 1,
+      "sessionId": "b94faeb2-65a8-4e55-835e-8799b05cc19e",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "laser_detuning",
+      "sourceUnit": "rad/s",
+      "valueHz": 59.36255223505845,
+      "attempts": 3,
+      "tokens": {
+        "inputTokens": 1996,
+        "outputTokens": 590,
+        "cacheReadTokens": 38656,
+        "cacheWriteTokens": 0,
+        "totalTokens": 41242
+      },
+      "tokenCostUsd": 0.00246648,
+      "latencyMs": 6052,
+      "attemptLatenciesMs": [
+        1448,
+        3497,
+        985
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-012",
+      "repeat": 1,
+      "sessionId": "43e283b7-8482-4c7f-93f6-0b93740968bd",
+      "decision": "defer",
+      "reason": "missing-metadata",
+      "fieldId": null,
+      "sourceUnit": null,
+      "valueHz": null,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1822,
+        "outputTokens": 220,
+        "cacheReadTokens": 24832,
+        "cacheWriteTokens": 0,
+        "totalTokens": 26874
+      },
+      "tokenCostUsd": 0.00155556,
+      "latencyMs": 3073,
+      "attemptLatenciesMs": [
+        1446,
+        1567
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-013",
+      "repeat": 1,
+      "sessionId": "e70c8b02-7a88-4cff-8e70-afebe23a6c46",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "carrier_detuning",
+      "sourceUnit": "rad/s",
+      "valueHz": -184.3240891967056,
+      "attempts": 3,
+      "tokens": {
+        "inputTokens": 2110,
+        "outputTokens": 475,
+        "cacheReadTokens": 38400,
+        "cacheWriteTokens": 0,
+        "totalTokens": 40985
+      },
+      "tokenCostUsd": 0.002355,
+      "latencyMs": 7646,
+      "attemptLatenciesMs": [
+        1329,
+        2214,
+        3994
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-014",
+      "repeat": 1,
+      "sessionId": "041c5c34-f830-4113-b66b-574cf1b36ae8",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "trap_detuning",
+      "sourceUnit": "Hz",
+      "valueHz": 2629.161,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1966,
+        "outputTokens": 214,
+        "cacheReadTokens": 24832,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27012
+      },
+      "tokenCostUsd": 0.00159156,
+      "latencyMs": 5510,
+      "attemptLatenciesMs": [
+        3646,
+        1798
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-015",
+      "repeat": 1,
+      "sessionId": "2dcd199d-b859-4d9a-ac66-457d634d1cee",
+      "decision": "defer",
+      "reason": "missing-metadata",
+      "fieldId": null,
+      "sourceUnit": null,
+      "valueHz": null,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1852,
+        "outputTokens": 176,
+        "cacheReadTokens": 24832,
+        "cacheWriteTokens": 0,
+        "totalTokens": 26860
+      },
+      "tokenCostUsd": 0.00151176,
+      "latencyMs": 3472,
+      "attemptLatenciesMs": [
+        1624,
+        1779
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-016",
+      "repeat": 1,
+      "sessionId": "a13f2e72-f7b3-4cb5-92b5-a59c1ec9e8c3",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "trap_detuning",
+      "sourceUnit": "Hz",
+      "valueHz": -1043.476,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1859,
+        "outputTokens": 250,
+        "cacheReadTokens": 24832,
+        "cacheWriteTokens": 0,
+        "totalTokens": 26941
+      },
+      "tokenCostUsd": 0.00160266,
+      "latencyMs": 3395,
+      "attemptLatenciesMs": [
+        1705,
+        1621
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-017",
+      "repeat": 1,
+      "sessionId": "8983826a-04ba-4ff8-b4c6-007a71e42182",
+      "decision": "defer",
+      "reason": "metadata-conflict",
+      "fieldId": null,
+      "sourceUnit": null,
+      "valueHz": null,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1866,
+        "outputTokens": 202,
+        "cacheReadTokens": 24832,
+        "cacheWriteTokens": 0,
+        "totalTokens": 26900
+      },
+      "tokenCostUsd": 0.00154716,
+      "latencyMs": 4406,
+      "attemptLatenciesMs": [
+        1327,
+        3015
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-018",
+      "repeat": 1,
+      "sessionId": "f3d23fb3-a1bc-4585-a3b4-1f9bfeca4c96",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "laser_detuning",
+      "sourceUnit": "Hz",
+      "valueHz": 4362.415,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1859,
+        "outputTokens": 199,
+        "cacheReadTokens": 24832,
+        "cacheWriteTokens": 0,
+        "totalTokens": 26890
+      },
+      "tokenCostUsd": 0.00154146,
+      "latencyMs": 6022,
+      "attemptLatenciesMs": [
+        3659,
+        2297
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-019",
+      "repeat": 1,
+      "sessionId": "b7239dea-06a3-4400-bdfe-bdca40a32d33",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "laser_detuning",
+      "sourceUnit": "Hz",
+      "valueHz": -1491.927,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1859,
+        "outputTokens": 228,
+        "cacheReadTokens": 24832,
+        "cacheWriteTokens": 0,
+        "totalTokens": 26919
+      },
+      "tokenCostUsd": 0.00157626,
+      "latencyMs": 3611,
+      "attemptLatenciesMs": [
+        1741,
+        1805
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-020",
+      "repeat": 1,
+      "sessionId": "57208593-396d-471f-9669-f07ac217d06e",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "detuning_freq",
+      "sourceUnit": "kHz",
+      "valueHz": 110.376,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1958,
+        "outputTokens": 201,
+        "cacheReadTokens": 24832,
+        "cacheWriteTokens": 0,
+        "totalTokens": 26991
+      },
+      "tokenCostUsd": 0.00157356,
+      "latencyMs": 3625,
+      "attemptLatenciesMs": [
+        1424,
+        2149
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-001",
+      "repeat": 2,
+      "sessionId": "390887a8-a209-4349-98f8-ff656336a2eb",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "probe_detuning",
+      "sourceUnit": "rad/s",
+      "valueHz": -248.85788553988746,
+      "attempts": 3,
+      "tokens": {
+        "inputTokens": 2105,
+        "outputTokens": 860,
+        "cacheReadTokens": 39040,
+        "cacheWriteTokens": 0,
+        "totalTokens": 42005
+      },
+      "tokenCostUsd": 0.0028347,
+      "latencyMs": 7028,
+      "attemptLatenciesMs": [
+        1334,
+        4046,
+        1516
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-002",
+      "repeat": 2,
+      "sessionId": "fe093ce9-4e14-4d8e-b93f-d1156075ff2c",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "spectroscopy_detuning",
+      "sourceUnit": "rad/s",
+      "valueHz": -350.08453697625913,
+      "attempts": 3,
+      "tokens": {
+        "inputTokens": 1895,
+        "outputTokens": 359,
+        "cacheReadTokens": 38528,
+        "cacheWriteTokens": 0,
+        "totalTokens": 40782
+      },
+      "tokenCostUsd": 0.00215514,
+      "latencyMs": 5257,
+      "attemptLatenciesMs": [
+        1436,
+        2489,
+        1226
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-003",
+      "repeat": 2,
+      "sessionId": "8f507588-c436-4feb-aad5-288db3ac78dc",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "spectroscopy_detuning",
+      "sourceUnit": "kHz",
+      "valueHz": -4810.549,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1832,
+        "outputTokens": 228,
+        "cacheReadTokens": 24960,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27020
+      },
+      "tokenCostUsd": 0.001572,
+      "latencyMs": 3202,
+      "attemptLatenciesMs": [
+        1233,
+        1914
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-004",
+      "repeat": 2,
+      "sessionId": "f2b3b119-6647-48dc-b6ce-621801baf37b",
+      "decision": "defer",
+      "reason": "competing-fields",
+      "fieldId": null,
+      "sourceUnit": null,
+      "valueHz": null,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1780,
+        "outputTokens": 196,
+        "cacheReadTokens": 24960,
+        "cacheWriteTokens": 0,
+        "totalTokens": 26936
+      },
+      "tokenCostUsd": 0.001518,
+      "latencyMs": 3015,
+      "attemptLatenciesMs": [
+        1483,
+        1473
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-005",
+      "repeat": 2,
+      "sessionId": "3d8ca78b-1748-4674-9f64-c1976069a79a",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "trap_detuning",
+      "sourceUnit": "kHz",
+      "valueHz": 850.11,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1734,
+        "outputTokens": 218,
+        "cacheReadTokens": 24960,
+        "cacheWriteTokens": 0,
+        "totalTokens": 26912
+      },
+      "tokenCostUsd": 0.0015306,
+      "latencyMs": 4967,
+      "attemptLatenciesMs": [
+        2780,
+        2120
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-006",
+      "repeat": 2,
+      "sessionId": "34fa99ea-0692-4c9e-8ccf-4e32869b812e",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "probe_detuning",
+      "sourceUnit": "rad/s",
+      "valueHz": -403.97197375344774,
+      "attempts": 3,
+      "tokens": {
+        "inputTokens": 2006,
+        "outputTokens": 513,
+        "cacheReadTokens": 38784,
+        "cacheWriteTokens": 0,
+        "totalTokens": 41303
+      },
+      "tokenCostUsd": 0.00238092,
+      "latencyMs": 5625,
+      "attemptLatenciesMs": [
+        1213,
+        2699,
+        1561
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-007",
+      "repeat": 2,
+      "sessionId": "ef046da1-e0a6-4132-b0b3-d460852b3efe",
+      "decision": "defer",
+      "reason": "invalid-value",
+      "fieldId": null,
+      "sourceUnit": null,
+      "valueHz": null,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1736,
+        "outputTokens": 149,
+        "cacheReadTokens": 24960,
+        "cacheWriteTokens": 0,
+        "totalTokens": 26845
+      },
+      "tokenCostUsd": 0.0014484,
+      "latencyMs": 3057,
+      "attemptLatenciesMs": [
+        1468,
+        1531
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-008",
+      "repeat": 2,
+      "sessionId": "580d0d08-4a3b-4c00-b246-a9c106aaec19",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "offset_detuning",
+      "sourceUnit": "Hz",
+      "valueHz": 2716.233,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1821,
+        "outputTokens": 275,
+        "cacheReadTokens": 24960,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27056
+      },
+      "tokenCostUsd": 0.0016251,
+      "latencyMs": 3762,
+      "attemptLatenciesMs": [
+        1948,
+        1754
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-009",
+      "repeat": 2,
+      "sessionId": "9a0762da-741e-4312-b7d0-2694e5ba903e",
+      "decision": "defer",
+      "reason": "competing-fields",
+      "fieldId": null,
+      "sourceUnit": null,
+      "valueHz": 0,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1818,
+        "outputTokens": 158,
+        "cacheReadTokens": 24960,
+        "cacheWriteTokens": 0,
+        "totalTokens": 26936
+      },
+      "tokenCostUsd": 0.0014838,
+      "latencyMs": 2934,
+      "attemptLatenciesMs": [
+        1196,
+        1682
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-010",
+      "repeat": 2,
+      "sessionId": "246f95a6-ed21-425c-9d6c-648a29e5cba3",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "probe_detuning",
+      "sourceUnit": "Hz",
+      "valueHz": -325.776,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1724,
+        "outputTokens": 276,
+        "cacheReadTokens": 24960,
+        "cacheWriteTokens": 0,
+        "totalTokens": 26960
+      },
+      "tokenCostUsd": 0.0015972,
+      "latencyMs": 3760,
+      "attemptLatenciesMs": [
+        1939,
+        1768
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-011",
+      "repeat": 2,
+      "sessionId": "977d8ed8-2624-49bb-be76-b71bbe78fe03",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "laser_detuning",
+      "sourceUnit": "rad/s",
+      "valueHz": 59.36255223505845,
+      "attempts": 3,
+      "tokens": {
+        "inputTokens": 1882,
+        "outputTokens": 482,
+        "cacheReadTokens": 38656,
+        "cacheWriteTokens": 0,
+        "totalTokens": 41020
+      },
+      "tokenCostUsd": 0.00230268,
+      "latencyMs": 5740,
+      "attemptLatenciesMs": [
+        1268,
+        2917,
+        1368
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-012",
+      "repeat": 2,
+      "sessionId": "c79c9109-9a8f-4c20-98fc-b63239f805dd",
+      "decision": "defer",
+      "reason": "missing-metadata",
+      "fieldId": null,
+      "sourceUnit": null,
+      "valueHz": null,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1694,
+        "outputTokens": 246,
+        "cacheReadTokens": 24960,
+        "cacheWriteTokens": 0,
+        "totalTokens": 26900
+      },
+      "tokenCostUsd": 0.0015522,
+      "latencyMs": 3541,
+      "attemptLatenciesMs": [
+        1434,
+        2050
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-013",
+      "repeat": 2,
+      "sessionId": "d9ef7f63-f137-4f46-aff2-0f36fb11f3be",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "carrier_detuning",
+      "sourceUnit": "rad/s",
+      "valueHz": -184.3240891967056,
+      "attempts": 3,
+      "tokens": {
+        "inputTokens": 7589,
+        "outputTokens": 395,
+        "cacheReadTokens": 29312,
+        "cacheWriteTokens": 0,
+        "totalTokens": 37296
+      },
+      "tokenCostUsd": 0.00363006,
+      "latencyMs": 6528,
+      "attemptLatenciesMs": [
+        1436,
+        3657,
+        1099
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-014",
+      "repeat": 2,
+      "sessionId": "dcd7c281-f2e7-42a0-a6d9-aa1f7e8ab792",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "trap_detuning",
+      "sourceUnit": "Hz",
+      "valueHz": 2629.161,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 7721,
+        "outputTokens": 191,
+        "cacheReadTokens": 19968,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27880
+      },
+      "tokenCostUsd": 0.00314454,
+      "latencyMs": 3885,
+      "attemptLatenciesMs": [
+        1703,
+        2124
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-015",
+      "repeat": 2,
+      "sessionId": "9fc3c8a5-7631-4ea4-aafa-3ab15638c73f",
+      "decision": "defer",
+      "reason": "missing-metadata",
+      "fieldId": null,
+      "sourceUnit": null,
+      "valueHz": null,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1726,
+        "outputTokens": 154,
+        "cacheReadTokens": 25856,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27736
+      },
+      "tokenCostUsd": 0.00147828,
+      "latencyMs": 3144,
+      "attemptLatenciesMs": [
+        1312,
+        1766
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-016",
+      "repeat": 2,
+      "sessionId": "bc08b396-3d07-4875-ad81-3b0b0b63530b",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "trap_detuning",
+      "sourceUnit": "Hz",
+      "valueHz": -1043.476,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1727,
+        "outputTokens": 235,
+        "cacheReadTokens": 25856,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27818
+      },
+      "tokenCostUsd": 0.00157578,
+      "latencyMs": 3491,
+      "attemptLatenciesMs": [
+        1537,
+        1866
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-017",
+      "repeat": 2,
+      "sessionId": "8a2accb7-6084-4043-8cab-1c5362595427",
+      "decision": "defer",
+      "reason": "metadata-conflict",
+      "fieldId": null,
+      "sourceUnit": null,
+      "valueHz": null,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1734,
+        "outputTokens": 197,
+        "cacheReadTokens": 25856,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27787
+      },
+      "tokenCostUsd": 0.00153228,
+      "latencyMs": 2859,
+      "attemptLatenciesMs": [
+        1301,
+        1494
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-018",
+      "repeat": 2,
+      "sessionId": "2bf6c9af-ec63-4898-aff3-baf42b173550",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "laser_detuning",
+      "sourceUnit": "Hz",
+      "valueHz": 4362.415,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1734,
+        "outputTokens": 192,
+        "cacheReadTokens": 25856,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27782
+      },
+      "tokenCostUsd": 0.00152628,
+      "latencyMs": 3114,
+      "attemptLatenciesMs": [
+        1247,
+        1768
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-019",
+      "repeat": 2,
+      "sessionId": "47561aca-e864-4b68-9ae9-09641999f79e",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "laser_detuning",
+      "sourceUnit": "Hz",
+      "valueHz": -1491.927,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1727,
+        "outputTokens": 220,
+        "cacheReadTokens": 25856,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27803
+      },
+      "tokenCostUsd": 0.00155778,
+      "latencyMs": 3838,
+      "attemptLatenciesMs": [
+        1260,
+        2505
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-020",
+      "repeat": 2,
+      "sessionId": "174ef0ff-1a10-4cca-864e-58264d889fec",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "detuning_freq",
+      "sourceUnit": "kHz",
+      "valueHz": 110.376,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1839,
+        "outputTokens": 238,
+        "cacheReadTokens": 25856,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27933
+      },
+      "tokenCostUsd": 0.00161298,
+      "latencyMs": 2910,
+      "attemptLatenciesMs": [
+        1122,
+        1726
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-001",
+      "repeat": 3,
+      "sessionId": "2d3e083a-768b-4827-ae4d-b2e3880ffcc9",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "probe_detuning",
+      "sourceUnit": "rad/s",
+      "valueHz": -248.85788553988746,
+      "attempts": 3,
+      "tokens": {
+        "inputTokens": 2060,
+        "outputTokens": 372,
+        "cacheReadTokens": 39936,
+        "cacheWriteTokens": 0,
+        "totalTokens": 42368
+      },
+      "tokenCostUsd": 0.00226248,
+      "latencyMs": 4989,
+      "attemptLatenciesMs": [
+        1293,
+        2075,
+        1505
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-002",
+      "repeat": 3,
+      "sessionId": "5e6bd9a7-ed41-4bfc-ba8f-1c68cff34753",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "spectroscopy_detuning",
+      "sourceUnit": "rad/s",
+      "valueHz": -350.08453697625913,
+      "attempts": 3,
+      "tokens": {
+        "inputTokens": 1936,
+        "outputTokens": 596,
+        "cacheReadTokens": 40064,
+        "cacheWriteTokens": 0,
+        "totalTokens": 42596
+      },
+      "tokenCostUsd": 0.00249792,
+      "latencyMs": 6146,
+      "attemptLatenciesMs": [
+        1257,
+        3216,
+        1547
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-003",
+      "repeat": 3,
+      "sessionId": "df60e46c-10cf-4637-a809-665550d36d61",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "spectroscopy_detuning",
+      "sourceUnit": "kHz",
+      "valueHz": -4810.549,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1842,
+        "outputTokens": 238,
+        "cacheReadTokens": 25856,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27936
+      },
+      "tokenCostUsd": 0.00161388,
+      "latencyMs": 3549,
+      "attemptLatenciesMs": [
+        1647,
+        1820
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-004",
+      "repeat": 3,
+      "sessionId": "6713deb0-8a2a-446f-b746-09fe74aa9813",
+      "decision": "defer",
+      "reason": "competing-fields",
+      "fieldId": null,
+      "sourceUnit": null,
+      "valueHz": null,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1782,
+        "outputTokens": 142,
+        "cacheReadTokens": 25856,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27780
+      },
+      "tokenCostUsd": 0.00148068,
+      "latencyMs": 2487,
+      "attemptLatenciesMs": [
+        1359,
+        1063
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-005",
+      "repeat": 3,
+      "sessionId": "c8724ba5-e320-46db-8ebf-41619d5024bb",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "trap_detuning",
+      "sourceUnit": "kHz",
+      "valueHz": 850.11,
+      "attempts": 3,
+      "tokens": {
+        "inputTokens": 1917,
+        "outputTokens": 309,
+        "cacheReadTokens": 39808,
+        "cacheWriteTokens": 0,
+        "totalTokens": 42034
+      },
+      "tokenCostUsd": 0.00214014,
+      "latencyMs": 5192,
+      "attemptLatenciesMs": [
+        1455,
+        1779,
+        1821
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-006",
+      "repeat": 3,
+      "sessionId": "f17476fa-d335-45af-b952-985b020ca5bb",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "probe_detuning",
+      "sourceUnit": "rad/s",
+      "valueHz": -403.97197375344774,
+      "attempts": 3,
+      "tokens": {
+        "inputTokens": 2033,
+        "outputTokens": 723,
+        "cacheReadTokens": 40320,
+        "cacheWriteTokens": 0,
+        "totalTokens": 43076
+      },
+      "tokenCostUsd": 0.0026871,
+      "latencyMs": 7033,
+      "attemptLatenciesMs": [
+        1417,
+        3393,
+        2110
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-007",
+      "repeat": 3,
+      "sessionId": "e76e5bfc-11b5-4aab-9ddd-cb84bfa35886",
+      "decision": "defer",
+      "reason": "invalid-value",
+      "fieldId": null,
+      "sourceUnit": null,
+      "valueHz": null,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1737,
+        "outputTokens": 167,
+        "cacheReadTokens": 25856,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27760
+      },
+      "tokenCostUsd": 0.00149718,
+      "latencyMs": 3258,
+      "attemptLatenciesMs": [
+        1679,
+        1520
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-008",
+      "repeat": 3,
+      "sessionId": "03c73e45-dfe0-462b-9111-e35b5746ad37",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "offset_detuning",
+      "sourceUnit": "Hz",
+      "valueHz": 2716.233,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1823,
+        "outputTokens": 202,
+        "cacheReadTokens": 25856,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27881
+      },
+      "tokenCostUsd": 0.00156498,
+      "latencyMs": 2889,
+      "attemptLatenciesMs": [
+        1116,
+        1719
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-009",
+      "repeat": 3,
+      "sessionId": "aecea460-3f74-4e58-814a-46a269e6239e",
+      "decision": "defer",
+      "reason": "competing-fields",
+      "fieldId": null,
+      "sourceUnit": null,
+      "valueHz": null,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1820,
+        "outputTokens": 230,
+        "cacheReadTokens": 25856,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27906
+      },
+      "tokenCostUsd": 0.00159768,
+      "latencyMs": 3549,
+      "attemptLatenciesMs": [
+        1239,
+        2246
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-010",
+      "repeat": 3,
+      "sessionId": "23ab83f1-bff2-4e3f-b1be-342ecd4de2da",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "probe_detuning",
+      "sourceUnit": "Hz",
+      "valueHz": -325.776,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1733,
+        "outputTokens": 253,
+        "cacheReadTokens": 25856,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27842
+      },
+      "tokenCostUsd": 0.00159918,
+      "latencyMs": 3650,
+      "attemptLatenciesMs": [
+        1401,
+        2179
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-011",
+      "repeat": 3,
+      "sessionId": "e5c3d93e-eeda-4a5b-8c72-fc1ccf97424c",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "laser_detuning",
+      "sourceUnit": "rad/s",
+      "valueHz": 59.36255223505845,
+      "attempts": 3,
+      "tokens": {
+        "inputTokens": 1956,
+        "outputTokens": 489,
+        "cacheReadTokens": 39936,
+        "cacheWriteTokens": 0,
+        "totalTokens": 42381
+      },
+      "tokenCostUsd": 0.00237168,
+      "latencyMs": 5463,
+      "attemptLatenciesMs": [
+        1001,
+        2785,
+        1544
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-012",
+      "repeat": 3,
+      "sessionId": "d43dd48e-fad5-4b5e-8cbf-4cb126ae6ec1",
+      "decision": "defer",
+      "reason": "missing-metadata",
+      "fieldId": null,
+      "sourceUnit": null,
+      "valueHz": 0,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1696,
+        "outputTokens": 201,
+        "cacheReadTokens": 25856,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27753
+      },
+      "tokenCostUsd": 0.00152568,
+      "latencyMs": 3481,
+      "attemptLatenciesMs": [
+        1788,
+        1635
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-013",
+      "repeat": 3,
+      "sessionId": "679ba21b-d4ff-482b-8ee8-04cb8c9eff9a",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "carrier_detuning",
+      "sourceUnit": "rad/s",
+      "valueHz": -184.3240891967056,
+      "attempts": 3,
+      "tokens": {
+        "inputTokens": 1910,
+        "outputTokens": 544,
+        "cacheReadTokens": 40064,
+        "cacheWriteTokens": 0,
+        "totalTokens": 42518
+      },
+      "tokenCostUsd": 0.00242772,
+      "latencyMs": 5626,
+      "attemptLatenciesMs": [
+        1385,
+        2965,
+        1169
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-014",
+      "repeat": 3,
+      "sessionId": "db798674-6e9d-476f-b882-c58fd81fe6d3",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "trap_detuning",
+      "sourceUnit": "Hz",
+      "valueHz": 2629.161,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1840,
+        "outputTokens": 216,
+        "cacheReadTokens": 25856,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27912
+      },
+      "tokenCostUsd": 0.00158688,
+      "latencyMs": 3049,
+      "attemptLatenciesMs": [
+        1405,
+        1583
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-015",
+      "repeat": 3,
+      "sessionId": "9b59ee4c-a77f-47ca-846c-99a94602d77b",
+      "decision": "defer",
+      "reason": "missing-metadata",
+      "fieldId": null,
+      "sourceUnit": null,
+      "valueHz": null,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1732,
+        "outputTokens": 222,
+        "cacheReadTokens": 25856,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27810
+      },
+      "tokenCostUsd": 0.00156168,
+      "latencyMs": 3505,
+      "attemptLatenciesMs": [
+        1390,
+        2048
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-016",
+      "repeat": 3,
+      "sessionId": "b79c9312-7aa9-4a78-b466-ac696bb7e25e",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "trap_detuning",
+      "sourceUnit": "Hz",
+      "valueHz": -1043.476,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1727,
+        "outputTokens": 185,
+        "cacheReadTokens": 25856,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27768
+      },
+      "tokenCostUsd": 0.00151578,
+      "latencyMs": 2882,
+      "attemptLatenciesMs": [
+        1245,
+        1579
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-017",
+      "repeat": 3,
+      "sessionId": "c0190327-13b4-44f0-b4c7-27d60f3fae37",
+      "decision": "defer",
+      "reason": "metadata-conflict",
+      "fieldId": null,
+      "sourceUnit": null,
+      "valueHz": null,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1734,
+        "outputTokens": 184,
+        "cacheReadTokens": 25856,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27774
+      },
+      "tokenCostUsd": 0.00151668,
+      "latencyMs": 3068,
+      "attemptLatenciesMs": [
+        1033,
+        1973
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-018",
+      "repeat": 3,
+      "sessionId": "3c3136f1-5169-407a-a4bc-e94175292e04",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "laser_detuning",
+      "sourceUnit": "Hz",
+      "valueHz": 4362.415,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1733,
+        "outputTokens": 204,
+        "cacheReadTokens": 25856,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27793
+      },
+      "tokenCostUsd": 0.00154038,
+      "latencyMs": 2811,
+      "attemptLatenciesMs": [
+        1334,
+        1415
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-019",
+      "repeat": 3,
+      "sessionId": "2fa52dab-54ce-4edb-afab-856f005526a0",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "laser_detuning",
+      "sourceUnit": "Hz",
+      "valueHz": -1491.927,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1727,
+        "outputTokens": 211,
+        "cacheReadTokens": 25856,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27794
+      },
+      "tokenCostUsd": 0.00154698,
+      "latencyMs": 3120,
+      "attemptLatenciesMs": [
+        1382,
+        1678
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    },
+    {
+      "caseId": "audit-020",
+      "repeat": 3,
+      "sessionId": "1afd24e3-a907-48e9-8e02-de941174f32d",
+      "decision": "accept",
+      "reason": null,
+      "fieldId": "detuning_freq",
+      "sourceUnit": "kHz",
+      "valueHz": 110.376,
+      "attempts": 2,
+      "tokens": {
+        "inputTokens": 1832,
+        "outputTokens": 210,
+        "cacheReadTokens": 25856,
+        "cacheWriteTokens": 0,
+        "totalTokens": 27898
+      },
+      "tokenCostUsd": 0.00157728,
+      "latencyMs": 3897,
+      "attemptLatenciesMs": [
+        1500,
+        2127
+      ],
+      "plausible": true,
+      "correct": true,
+      "e2eSuccess": true,
+      "silentError": false,
+      "inputHash": "present"
+    }
+  ]
+}

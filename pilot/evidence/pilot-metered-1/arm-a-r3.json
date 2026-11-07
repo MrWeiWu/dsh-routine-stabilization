@@ -14,7 +14,8 @@
     "promptHash": "38f01152e601e437f16eff5abec757b237a3f04f47d557d3d95b65e491b87351",
     "sessionId": "d5dae282-2005-47d5-a03c-7186b543752b",
     "attempts": 7,
-    "reasoningEffort": "high"
+    "reasoningEffort": "high",
+    "latencySampleHash": "3e5ccbf496d001bdf7dd0beb6e91f659873f7fbdb4633715e5b693b5631bae49"
   },
   "conditions": {
     "contractRevision": "normalize_detuning/v1",
@@ -1366,14 +1367,16 @@
     }
   ],
   "latency": {
-    "basis": "per-attempt",
-    "attempts": 7,
-    "p50Ms": 5736,
-    "p95Ms": 14226,
-    "meanMsPerAttempt": 6057,
-    "totalMs": 42952,
-    "meanMsPerRequest": 429.52,
-    "note": "the agent batched the cases into a few model attempts; attempt-level percentiles are reported, per-request percentiles are not isolated"
+    "basis": "per-request-sampled",
+    "sampleCases": 20,
+    "sampleRepeats": 3,
+    "samples": 60,
+    "p50Ms": 3611,
+    "p95Ms": 7033,
+    "meanMs": 4246.416666666667,
+    "minMs": 2487,
+    "maxMs": 9051,
+    "note": "measured by spawning one fresh agent per sampled request; full-run cost still comes from the batch metering above"
   },
   "usageSource": {
     "tool": "pilot/meter-session.mjs",

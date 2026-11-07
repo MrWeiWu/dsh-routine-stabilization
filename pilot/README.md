@@ -267,3 +267,23 @@ trusting projected totals. `routine_compare` computes
 `setup + maintenance + requests × per-request`, the cost per correct
 resolution, and marks the cost picture complete only when every arm has numeric
 per-request, setup and maintenance costs.
+
+
+## Per-request latency probe (arm A)
+
+The batch arm-A session answers many cases per model attempt, so its
+percentiles are attempt-level. For a per-request latency sample:
+
+1. write one input file per sampled case and run one fresh agent per request
+   with `pilot/arm-a-percase-prompt.md` (the `workflow` tool is a convenient
+   driver; it records wall clock per call);
+2. fold the child sessions with `pilot/meter-percase.mjs --out <sample.json>`,
+   which extracts the marker, the decision, the token usage and the session
+   wall clock per probe;
+3. pass the sample to the runner:
+   `node pilot/run.mjs ... --arm-a-latency <sample.json>`.
+
+The arm record then reports `latency.basis: "per-request-sampled"` with the
+sample size and p50/p95, while full-run cost still comes from the batch
+metering. The sample size is declared in the record; it is not a full-census
+per-request measurement.

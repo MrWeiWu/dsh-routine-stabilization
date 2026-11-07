@@ -172,3 +172,13 @@ user, and an obfuscated shell command could still reach the files. The real
 read barrier is the 0700/0600 mode enforced by `pilot/meter-session`'s sibling
 `store.seedExample` and by the scoring workflow (labels are for the release
 reviewer, through `scripts/score.mjs`).
+
+
+## Observation ledger and derivation traces
+
+`routine_observe` stores payload-minimized observations (task, input hash,
+route, outcome, failure reason, cost, latency). `routine_propose` may cite
+those trace ids; the candidate manifest then records `observed-request`
+derivation traces and `routineProvenance: "trace-derived"`. The evaluation
+contract gate resolves each cited trace against the ledger, so a proposal
+cannot claim a source it did not record.

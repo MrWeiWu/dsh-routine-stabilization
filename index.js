@@ -65,6 +65,12 @@ export function apply(ctx, config = {}) {
     async propose(proposal) {
       return engine.proposeRoutine(root, proposal)
     },
+    async observe(observation) {
+      return engine.observe(root, observation)
+    },
+    async observations(limit) {
+      return engine.listObservations(root, limit)
+    },
     async preregister(routine, version, preregistration) {
       return engine.writePreregistration(root, routine, String(version), preregistration, { by: 'agent' })
     },

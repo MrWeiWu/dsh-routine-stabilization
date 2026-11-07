@@ -64,6 +64,7 @@ function usage() {
     '                     (arm-a-r1.json or arm-a-run-1.json, ...)',
     '  --arm-a-usage <dir> session-usage files from pilot/meter-session.mjs',
     '                     (usage-a-r1.json, ...) attached to arm A',
+    '  --arm-a-latency <file> per-request latency sample from pilot/meter-percase.mjs',
     '  --cost-model <file> declared prices/labor assumptions',
     `                     (default: pilot/cost-model.json)`,
     '  --help             show this help',
@@ -97,6 +98,7 @@ function parseArgs(argv) {
     repeats: 3,
     armA: null,
     armAUsage: null,
+    armALatency: null,
     costModel: DEFAULT_COST_MODEL,
     help: false,
   }
@@ -137,6 +139,9 @@ function parseArgs(argv) {
         break
       case '--arm-a-usage':
         options.armAUsage = takeValue('--arm-a-usage')
+        break
+      case '--arm-a-latency':
+        options.armALatency = takeValue('--arm-a-latency')
         break
       case '--cost-model':
         options.costModel = takeValue('--cost-model')
@@ -566,7 +571,7 @@ function normalizeArmARecord(record) {
   }
 }
 
-async function ingestArmA({ directory, outDir, runId, caseIds, repeats, usageDirectory, costModel, promptHash, workload }) {
+async function ingestArmA({ directory, outDir, runId, caseIds, repeats, usageDirectory, latencySample, costModel, promptHash, workload }) {
   const absolute = path.resolve(directory)
   let names
   try {
@@ -650,6 +655,24 @@ async function ingestArmA({ directory, outDir, runId, caseIds, repeats, usageDir
         costUsd: record.cost.perRequestUsd,
         costBasis: 'allocated-mean',
       }))
+      if (latencySample !== null) {
+        record.latency = {
+          basis: 'per-request-sampled',
+          sampleCases: latencySample.cases,
+          sampleRepeats: latencySample.repeats,
+          samples: latencySample.latency.n,
+          p50Ms: latencySample.latency.p50Ms,
+          p95Ms: latencySample.latency.p95Ms,
+          meanMs: latencySample.latency.meanMs,
+          minMs: latencySample.latency.minMs,
+          maxMs: latencySample.latency.maxMs,
+          note: 'measured by spawning one fresh agent per sampled request; full-run cost still comes from the batch metering above',
+        }
+        record.participant = {
+          ...record.participant,
+          latencySampleHash: latencySample.hash,
+        }
+      }
       record.usageSource = {
         tool: 'pilot/meter-session.mjs',
         source: usage.source,
@@ -796,6 +819,15 @@ async function main() {
 
   const costModel = await loadCostModel(options.costModel)
   const promptHash = await sha256File(ARM_A_PROMPT)
+  let latencySample = null
+  if (options.armALatency !== null) {
+    const latencyPath = path.resolve(options.armALatency)
+    const rawSample = await readJson(latencyPath)
+    if (rawSample?.kind !== 'arm-a-per-request-sample') {
+      throw new Error(`${latencyPath}: not an arm-a-per-request-sample file`)
+    }
+    latencySample = { ...rawSample, hash: await sha256File(latencyPath) }
+  }
 
   const engine = await import(pathToFileURL(ENGINE_PATH).href)
   if (typeof engine.invokeRoutine !== 'function') {
@@ -834,6 +866,7 @@ async function main() {
       caseIds: cases.map((entry) => entry.id),
       repeats: options.repeats,
       usageDirectory: options.armAUsage,
+      latencySample,
       costModel,
       promptHash,
       workload,

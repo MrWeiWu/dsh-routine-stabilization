@@ -246,6 +246,26 @@ node pilot/run.mjs --root "$DSH_HOME/routine-registry" --run-id pilot-real-1 \
 
 Full protocol: [Pilot protocol](docs/pilot-protocol.md).
 
+## Observe → propose → fresh evidence cycle
+
+The observation ledger (`observations/observations.jsonl`) records
+payload-minimized recurring-work traces: task family, input hash, route,
+outcome, failure reason, cost and latency. `routine_observe` appends one trace
+and returns its id; `routine_observations` lists recent records.
+
+`routine_propose` accepts `sourceTraceIds`; the candidate is then marked
+`routineProvenance: "trace-derived"` and its manifest carries
+`observed-request` derivation traces that evaluate resolves against the ledger
+(a missing trace fails the contract gate). v1 of the built-in example remains
+`contract-derived` (design-note traces).
+
+Because v1 consumed its blind label set, the v2 candidate is created with a
+**fresh** audit and challenge set generated deterministically from a different
+seed (`pilot/fresh-audit.mjs`) and re-derived independently by
+`pilot/v2-reference-check.mjs`. `pilot/propose-v2.mjs --root ... --trace-ids ...`
+creates the candidate; `routine_evaluate routine=normalize_detuning version=2`
+consumes the fresh labels exactly once.
+
 ## Release eligibility
 
 A release decision is not just "gates passed". The report carries
