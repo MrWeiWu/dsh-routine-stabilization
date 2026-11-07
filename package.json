@@ -1,6 +1,6 @@
 {
   "name": "dsh-routine-stabilization",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Versioned LLM routine registry for the DeepSeek Harness: blind evidence and preregistration, runtime admission, measured pilot comparison, agent preset and Settings panel.",
   "type": "module",
   "exports": {

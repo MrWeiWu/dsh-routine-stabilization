@@ -271,6 +271,7 @@ function armCase(entry) {
     valueHz: entry.valueHz,
     latencyMs: entry.latencyMs,
     costUsd: entry.costUsd,
+    costBasis: entry.costBasis ?? null,
     firstRoute: entry.firstRoute,
     finalOutcome: entry.finalOutcome,
   }
@@ -438,6 +439,7 @@ async function runArmB({ cases, repeat, runId, workload, conditions, costModel }
       valueHz,
       latencyMs,
       costUsd: 0,
+      costBasis: 'local-script',
       firstRoute: decision,
       finalOutcome: finalOutcomeOf(decision),
     })
@@ -488,6 +490,7 @@ async function runArmC({ engine, root, routine, version, cases, repeat, runId, w
       valueHz,
       latencyMs,
       costUsd: 0,
+      costBasis: 'local-script',
       firstRoute: decision,
       finalOutcome: finalOutcomeOf(decision),
     })
@@ -629,19 +632,23 @@ async function ingestArmA({ directory, outDir, runId, caseIds, repeats, usageDir
         reasoningEffort: usage.model.reasoningEffort ?? null,
       }
       record.cost = armACost({ costModel, usage, requests })
+      const attemptLatencies = (usage.attemptLatenciesMs ?? []).filter(Number.isFinite)
       record.latency = {
-        basis: 'session-wall-clock',
+        basis: 'per-attempt',
+        attempts: attemptLatencies.length,
+        p50Ms: attemptLatencies.length > 0 ? percentile(attemptLatencies, 0.5) : null,
+        p95Ms: attemptLatencies.length > 0 ? percentile(attemptLatencies, 0.95) : null,
+        meanMsPerAttempt:
+          attemptLatencies.length > 0 ? attemptLatencies.reduce((sum, value) => sum + value, 0) / attemptLatencies.length : null,
         totalMs: usage.timing.wallClockMs,
-        meanMsPerRequest:
-          metricsMean(usage.timing.wallClockMs, requests),
-        p50Ms: null,
-        p95Ms: null,
-        note: 'the agent solved the batch in one session; per-case wall clock is not isolated, so percentiles are unavailable',
+        meanMsPerRequest: metricsMean(usage.timing.wallClockMs, requests),
+        note: 'the agent batched the cases into a few model attempts; attempt-level percentiles are reported, per-request percentiles are not isolated',
       }
       record.cases = normalized.cases.map((entry) => ({
         ...entry,
         latencyMs: null,
-        costUsd: null,
+        costUsd: record.cost.perRequestUsd,
+        costBasis: 'allocated-mean',
       }))
       record.usageSource = {
         tool: 'pilot/meter-session.mjs',

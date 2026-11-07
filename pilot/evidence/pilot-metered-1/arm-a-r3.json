@@ -74,7 +74,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-002",
@@ -86,7 +87,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-003",
@@ -98,7 +100,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-004",
@@ -110,7 +113,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-005",
@@ -122,7 +126,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-006",
@@ -134,7 +139,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-007",
@@ -146,7 +152,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-008",
@@ -158,7 +165,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-009",
@@ -170,7 +178,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-010",
@@ -182,7 +191,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-011",
@@ -194,7 +204,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-012",
@@ -206,7 +217,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-013",
@@ -218,7 +230,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-014",
@@ -230,7 +243,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-015",
@@ -242,7 +256,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-016",
@@ -254,7 +269,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-017",
@@ -266,7 +282,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-018",
@@ -278,7 +295,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-019",
@@ -290,7 +308,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-020",
@@ -302,7 +321,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-021",
@@ -314,7 +334,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-022",
@@ -326,7 +347,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-023",
@@ -338,7 +360,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-024",
@@ -350,7 +373,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-025",
@@ -362,7 +386,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-026",
@@ -374,7 +399,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-027",
@@ -386,7 +412,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-028",
@@ -398,7 +425,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-029",
@@ -410,7 +438,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-030",
@@ -422,7 +451,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-031",
@@ -434,7 +464,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-032",
@@ -446,7 +477,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-033",
@@ -458,7 +490,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-034",
@@ -470,7 +503,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-035",
@@ -482,7 +516,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-036",
@@ -494,7 +529,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-037",
@@ -506,7 +542,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-038",
@@ -518,7 +555,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-039",
@@ -530,7 +568,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-040",
@@ -542,7 +581,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-041",
@@ -554,7 +594,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-042",
@@ -566,7 +607,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-043",
@@ -578,7 +620,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-044",
@@ -590,7 +633,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-045",
@@ -602,7 +646,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-046",
@@ -614,7 +659,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-047",
@@ -626,7 +672,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-048",
@@ -638,7 +685,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-049",
@@ -650,7 +698,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-050",
@@ -662,7 +711,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-051",
@@ -674,7 +724,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-052",
@@ -686,7 +737,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-053",
@@ -698,7 +750,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-054",
@@ -710,7 +763,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-055",
@@ -722,7 +776,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-056",
@@ -734,7 +789,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-057",
@@ -746,7 +802,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-058",
@@ -758,7 +815,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-059",
@@ -770,7 +828,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-060",
@@ -782,7 +841,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-061",
@@ -794,7 +854,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-062",
@@ -806,7 +867,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-063",
@@ -818,7 +880,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-064",
@@ -830,7 +893,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-065",
@@ -842,7 +906,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-066",
@@ -854,7 +919,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-067",
@@ -866,7 +932,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-068",
@@ -878,7 +945,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-069",
@@ -890,7 +958,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-070",
@@ -902,7 +971,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-071",
@@ -914,7 +984,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-072",
@@ -926,7 +997,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-073",
@@ -938,7 +1010,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-074",
@@ -950,7 +1023,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-075",
@@ -962,7 +1036,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-076",
@@ -974,7 +1049,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-077",
@@ -986,7 +1062,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-078",
@@ -998,7 +1075,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-079",
@@ -1010,7 +1088,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-080",
@@ -1022,7 +1101,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-081",
@@ -1034,7 +1114,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-082",
@@ -1046,7 +1127,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-083",
@@ -1058,7 +1140,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-084",
@@ -1070,7 +1153,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-085",
@@ -1082,7 +1166,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-086",
@@ -1094,7 +1179,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-087",
@@ -1106,7 +1192,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-088",
@@ -1118,7 +1205,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-089",
@@ -1130,7 +1218,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-090",
@@ -1142,7 +1231,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-091",
@@ -1154,7 +1244,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-092",
@@ -1166,7 +1257,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-093",
@@ -1178,7 +1270,8 @@
       "firstRoute": "defer",
       "finalOutcome": "deferred",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-094",
@@ -1190,7 +1283,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-095",
@@ -1202,7 +1296,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-096",
@@ -1214,7 +1309,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-097",
@@ -1226,7 +1322,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-098",
@@ -1238,7 +1335,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-099",
@@ -1250,7 +1348,8 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     },
     {
       "caseId": "audit-100",
@@ -1262,16 +1361,19 @@
       "firstRoute": "accept",
       "finalOutcome": "resolved",
       "latencyMs": null,
-      "costUsd": null
+      "costUsd": 0.500177,
+      "costBasis": "allocated-mean"
     }
   ],
   "latency": {
-    "basis": "session-wall-clock",
+    "basis": "per-attempt",
+    "attempts": 7,
+    "p50Ms": 5736,
+    "p95Ms": 14226,
+    "meanMsPerAttempt": 6057,
     "totalMs": 42952,
     "meanMsPerRequest": 429.52,
-    "p50Ms": null,
-    "p95Ms": null,
-    "note": "the agent solved the batch in one session; per-case wall clock is not isolated, so percentiles are unavailable"
+    "note": "the agent batched the cases into a few model attempts; attempt-level percentiles are reported, per-request percentiles are not isolated"
   },
   "usageSource": {
     "tool": "pilot/meter-session.mjs",

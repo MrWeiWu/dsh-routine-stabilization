@@ -20,6 +20,15 @@
     "cacheWriteTokens": 0,
     "totalTokens": 201591
   },
+  "attemptLatenciesMs": [
+    8218,
+    2992,
+    14226,
+    5736,
+    5894,
+    3800,
+    1533
+  ],
   "timing": {
     "startedAt": 1794085537633,
     "endedAt": 1794085580585,

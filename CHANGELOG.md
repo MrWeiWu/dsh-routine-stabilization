@@ -4,6 +4,29 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] - 2026-11-07
+
+### Added
+
+- Cross-reset blind-audit ledger (`$DSH_HOME/routine-stabilization/audit-ledger.jsonl`,
+  override `ROUTINE_AUDIT_LEDGER` for tests): the first use of a label set is
+  remembered outside the registry root, so recreating the root cannot turn a
+  second use into a fresh first run; the comparison and release gates read it.
+- `routine_compare` reports break-even request counts against each baseline and
+  attaches the evaluation report hash to `candidateGates`.
+- Per-case cost fields in evaluation reports and pilot arms: A records allocate
+  the metered per-request cost (`costBasis: "allocated-mean"`), B/C carry the
+  zero local-script marginal cost.
+- Arm A attempt-level latency: `pilot/meter-session.mjs` folds per-attempt
+  durations from the durable log, and the arm record reports p50/p95 over
+  attempts with an explicit `latency.basis: "per-attempt"`.
+
+### Changed
+
+- The refined protected-tree tool guard screens only filesystem/execution tools
+  and their arguments, so ordinary chat/plan text that mentions the protected
+  word is no longer rejected.
+
 ## [0.3.0] - 2026-11-07
 
 ### Added

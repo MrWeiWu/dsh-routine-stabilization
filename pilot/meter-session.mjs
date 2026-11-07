@@ -85,7 +85,14 @@ export function meterSessionLog(text, sessionId) {
   const header = events.find((event) => event.type === 'session') ?? {}
   const descriptor = events.find((event) => event.type === 'subagent/descriptor')?.data ?? {}
   const requestHeader = events.find((event) => event.type === 'request/header')?.data?.header
+  const stepStarts = new Map()
+  for (const event of events) {
+    if (event.type === 'step/start' && Number.isFinite(event.data?.step)) {
+      stepStarts.set(event.data.step, event.time ?? null)
+    }
+  }
   const attempts = []
+  const attemptLatenciesMs = []
   const totals = Object.fromEntries(TOKEN_USAGE_KEYS.map((key) => [key, 0]))
   for (const event of events) {
     if (event.type !== 'assistant/message') continue
@@ -103,6 +110,11 @@ export function meterSessionLog(text, sessionId) {
     if (attempt === null) continue
     attempt.time = event.time ?? null
     attempt.step = event.data?.step ?? null
+    const stepStart = event.data?.step !== undefined ? stepStarts.get(event.data.step) : undefined
+    if (Number.isFinite(stepStart) && Number.isFinite(event.time)) {
+      attempt.durationMs = event.time - stepStart
+      attemptLatenciesMs.push(attempt.durationMs)
+    }
     attempts.push(attempt)
     for (const key of TOKEN_USAGE_KEYS) totals[key] += attempt[key]
   }
@@ -131,6 +143,7 @@ export function meterSessionLog(text, sessionId) {
       cacheWriteTokens: totals.cacheWriteTokens,
       totalTokens: totals.inputTokens + totals.outputTokens + totals.cacheReadTokens + totals.cacheWriteTokens,
     },
+    attemptLatenciesMs,
     timing: {
       startedAt,
       endedAt,

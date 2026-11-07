@@ -69,9 +69,11 @@ clock). The three runs' decisions are identical.
 
 - The audit inputs are synthetic and the model solved the contract fully; this
   run demonstrates the economic comparison, not a production claim.
-- Arm A's wall clock is the whole-session time (the agent batched the cases);
-  per-case latency percentiles are therefore **unavailable** (`latency.basis:
-  "session-wall-clock"`). B and C have real per-case `hrtime` percentiles.
+- Arm A latency is reported at **model-attempt level** because the agent batched
+  the cases: repeat 1 has 7 attempts, p50 6.34 s / p95 81.94 s, total 120.6 s,
+  mean 1,205.66 ms per request (`latency.basis: "per-attempt"`). Per-request
+  percentiles are still not isolated; B and C have real per-case `hrtime`
+  percentiles (B p50 0.003 ms / p95 0.017 ms, C p50 2.00 ms / p95 3.08 ms).
 - The token counts are provider-reported and durable; the USD conversion depends
   on the declared model prices, which are assumptions. Replace them before
   trusting the totals. Labor hours for B/C are declared estimates with an
@@ -79,6 +81,16 @@ clock). The three runs' decisions are identical.
 - Zero discordance on 100 paired cases bounds the discordance rate at 2.95 %
   (one-sided 95 %), not zero; collect more shadow data before drawing a
   deployment-rate conclusion.
+- Break-even: C needs ~540 requests to undercut A at the declared prices, but it
+  can never undercut B under this model because B also has zero marginal cost
+  ($51 fixed vs $285 fixed). If B's answers required the same 0.5 min/request
+  human review as A, the C-vs-B break-even would be ~468 requests. The
+  `do-not-advance` decision is therefore structural at this horizon, not a
+  measurement failure; `routine_compare` now reports these break-even counts.
+- The evaluation report was produced by engine 0.3.0 at clean commit `0012115`.
+  Later commits (0.3.1) add reporting/ledger fixes and the refined tool guard;
+  they do not change candidate hooks or fixtures, and the evaluated
+  `evidenceHash` (`b9aa03ce…`) is unchanged.
 - Release remains blocked: the evidence is synthetic, no real deployment data is
   attested, and no independent domain reviewer has signed.
 
